@@ -1,3027 +1,2407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Open Gallery — Everyone's Photos</title>
+<title>Open Gallery</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* =========================
+   RESET
+========================= */
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #ffffff;
-      line-height: 1.5;
-      background: #071827;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    button,
-    input,
-    textarea {
-      font: inherit;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    button {
-      cursor: pointer;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    background: #111827;
+}
 
-    /* =====================================
-       SCENIC BACKGROUND
-    ===================================== */
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+/* =========================
+   BACKGROUND
+========================= */
 
-      background-image:
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=90")
+        center / cover no-repeat;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background:
         linear-gradient(
-          rgba(3, 15, 27, 0.38),
-          rgba(3, 15, 27, 0.58)
-        ),
-        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=90");
-
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      z-index: -2;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(3, 15, 27, 0.18),
-          rgba(3, 15, 27, 0.58)
+            135deg,
+            rgba(15, 23, 42, 0.90),
+            rgba(30, 41, 59, 0.72),
+            rgba(37, 99, 235, 0.42)
         );
+}
 
-      z-index: -1;
-      pointer-events: none;
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 6%;
+
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.logo {
+    border: none;
+    background: none;
+    color: white;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.nav-create {
+    border: none;
+    background: white;
+    color: #2563eb;
+
+    padding: 11px 18px;
+    border-radius: 12px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.nav-create:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+    min-height: 760px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px 20px;
+
+    overflow: hidden;
+}
+
+.hero-content {
+    width: min(900px, 100%);
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 9px 15px;
+    margin-bottom: 25px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+
+    backdrop-filter: blur(12px);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 86px);
+    line-height: 0.98;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 28px;
+}
+
+.hero h1 span {
+    color: #60a5fa;
+}
+
+.hero p {
+    max-width: 680px;
+    margin: auto;
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    color: rgba(255,255,255,0.84);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+
+    margin-top: 34px;
+
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    border: none;
+    padding: 15px 23px;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.primary-btn {
+    background: #ffffff;
+    color: #2563eb;
+}
+
+.secondary-btn {
+    background: rgba(255,255,255,0.13);
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.22);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   FLOATING MEMORY CARDS
+========================= */
+
+.memory {
+    position: absolute;
+
+    width: 150px;
+    height: 180px;
+
+    padding: 12px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+
+    animation: float 5s ease-in-out infinite;
+}
+
+.memory-photo {
+    width: 100%;
+    height: 125px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 48px;
+
+    background: linear-gradient(
+        135deg,
+        #60a5fa,
+        #8b5cf6,
+        #ec4899
+    );
+}
+
+.memory p {
+    margin-top: 9px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.memory-1 {
+    left: 7%;
+    top: 18%;
+    transform: rotate(-9deg);
+}
+
+.memory-2 {
+    right: 7%;
+    top: 22%;
+    transform: rotate(9deg);
+    animation-delay: 1s;
+}
+
+.memory-3 {
+    left: 12%;
+    bottom: 12%;
+    transform: rotate(7deg);
+    animation-delay: 2s;
+}
+
+.memory-4 {
+    right: 12%;
+    bottom: 10%;
+    transform: rotate(-7deg);
+    animation-delay: 3s;
+}
+
+@keyframes float {
+
+    0%,100% {
+        margin-top: 0;
     }
 
-    /* =====================================
-       NAVBAR
-    ===================================== */
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      padding: 18px 6%;
-
-      background: rgba(5, 20, 34, 0.48);
-      backdrop-filter: blur(14px);
-
-      border-bottom:
-        1px solid rgba(255,255,255,0.12);
+    50% {
+        margin-top: -14px;
     }
+}
 
-    .logo {
-      color: white;
-      text-decoration: none;
 
-      font-size: 21px;
-      font-weight: 800;
+/* =========================
+   FEATURES
+========================= */
 
-      letter-spacing: -0.5px;
-    }
+.features {
+    width: min(1150px, 90%);
+    margin: 0 auto 100px;
 
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
 
-    .nav-btn {
-      border: none;
+.feature-card {
+    padding: 30px;
 
-      padding: 11px 19px;
+    border-radius: 24px;
 
-      border-radius: 12px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.16);
 
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
+    backdrop-filter: blur(18px);
 
-      color: white;
+    transition: 0.25s;
+}
 
-      font-weight: 800;
+.feature-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255,255,255,0.15);
+}
 
-      box-shadow:
-        0 8px 25px
-        rgba(37,99,235,0.3);
+.icon {
+    width: 68px;
+    height: 68px;
 
-      transition: 0.2s;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .nav-btn:hover {
-      transform: translateY(-2px);
-    }
+    border-radius: 20px;
 
-    /* =====================================
-       HERO
-    ===================================== */
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
 
-    .hero {
-      position: relative;
+    margin-bottom: 20px;
+}
 
-      min-height: 720px;
+.icon svg {
+    width: 32px;
+    height: 32px;
+}
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+.feature-card h3 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
 
-      padding: 90px 6%;
+.feature-card p {
+    color: rgba(255,255,255,0.72);
+    line-height: 1.6;
+}
 
-      overflow: hidden;
+.feature-action {
+    display: inline-block;
 
-      text-align: center;
-    }
+    margin-top: 18px;
 
-    .hero::after {
-      content: "";
+    border: none;
+    background: none;
 
-      position: absolute;
-      inset: 0;
+    color: #93c5fd;
 
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255,255,255,0.08),
-          transparent 45%
-        );
+    font-weight: 700;
 
-      pointer-events: none;
-    }
+    cursor: pointer;
+}
 
-    .hero-content {
-      position: relative;
 
-      z-index: 10;
+/* =========================
+   HOW IT WORKS
+========================= */
 
-      max-width: 820px;
-    }
+.how-section {
+    width: min(1100px, 90%);
+    margin: 0 auto 120px;
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
+    text-align: center;
+}
 
-      padding: 9px 17px;
+.section-title {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
 
-      border-radius: 999px;
+.section-subtitle {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 45px;
+}
 
-      background:
-        rgba(255,255,255,0.14);
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
 
-      border:
-        1px solid rgba(255,255,255,0.25);
+.step {
+    padding: 30px;
 
-      backdrop-filter: blur(12px);
+    border-radius: 22px;
 
-      font-size: 14px;
-      font-weight: 700;
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.14);
 
-      margin-bottom: 25px;
-    }
+    backdrop-filter: blur(15px);
+}
 
-    .hero h1 {
-      font-size:
-        clamp(48px, 8vw, 88px);
+.step-number {
+    width: 45px;
+    height: 45px;
 
-      line-height: 0.98;
+    margin: 0 auto 18px;
 
-      letter-spacing: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      margin-bottom: 25px;
+    border-radius: 50%;
 
-      text-shadow:
-        0 5px 30px
-        rgba(0,0,0,0.3);
-    }
+    background: #ffffff;
+    color: #2563eb;
 
-    .hero h1 span {
-      background:
-        linear-gradient(
-          90deg,
-          #60a5fa,
-          #c084fc,
-          #f9a8d4
-        );
+    font-weight: 800;
+}
 
-      -webkit-background-clip: text;
-      background-clip: text;
+.step h3 {
+    margin-bottom: 10px;
+}
 
-      color: transparent;
-    }
+.step p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+}
 
-    .hero-description {
-      max-width: 680px;
 
-      margin:
-        0 auto 32px;
+/* =========================
+   MODAL
+========================= */
 
-      color:
-        rgba(255,255,255,0.9);
+.modal {
+    position: fixed;
+    inset: 0;
 
-      font-size: 19px;
+    z-index: 500;
 
-      text-shadow:
-        0 2px 15px
-        rgba(0,0,0,0.4);
-    }
+    display: none;
+    align-items: center;
+    justify-content: center;
 
-    .hero-buttons {
-      display: flex;
+    padding: 20px;
 
-      justify-content: center;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(10px);
+}
 
-      flex-wrap: wrap;
+.modal.active {
+    display: flex;
+}
 
-      gap: 12px;
-    }
+.modal-box {
+    width: min(500px, 100%);
 
-    .primary-btn,
-    .secondary-btn {
-      border: none;
+    padding: 30px;
 
-      padding: 15px 24px;
+    border-radius: 25px;
 
-      border-radius: 14px;
+    background: #ffffff;
+    color: #111827;
 
-      font-weight: 800;
+    box-shadow: 0 30px 100px rgba(0,0,0,0.4);
+}
 
-      transition: 0.2s;
-    }
+.modal-box h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
 
-    .primary-btn {
-      color: white;
+.modal-box > p {
+    color: #6b7280;
+    margin-bottom: 25px;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
+.form-group {
+    margin-bottom: 18px;
+}
 
-      box-shadow:
-        0 12px 35px
-        rgba(37,99,235,0.35);
-    }
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
 
-    .primary-btn:hover,
-    .secondary-btn:hover {
-      transform: translateY(-3px);
-    }
+    font-size: 14px;
+    font-weight: 700;
+}
 
-    .secondary-btn {
-      color: white;
+.form-group input,
+.form-group textarea {
+    width: 100%;
 
-      background:
-        rgba(255,255,255,0.12);
+    padding: 13px 14px;
 
-      border:
-        1px solid rgba(255,255,255,0.4);
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
 
-      backdrop-filter: blur(10px);
-    }
+    font-size: 15px;
+    outline: none;
+}
 
-    .trust-line {
-      margin-top: 20px;
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+}
 
-      color:
-        rgba(255,255,255,0.75);
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
 
-      font-size: 13px;
+.emoji-picker {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
-      font-weight: 700;
-    }
+.emoji-option {
+    width: 42px;
+    height: 42px;
 
-    /* =====================================
-       FLOATING MEMORY CARDS
-    ===================================== */
+    border: 1px solid #d1d5db;
+    background: white;
 
-    .memory-card {
-      position: absolute;
+    border-radius: 10px;
 
-      width: 155px;
-      height: 190px;
+    font-size: 20px;
 
-      padding: 9px;
+    cursor: pointer;
+}
 
-      background: white;
+.emoji-option.selected {
+    border: 2px solid #2563eb;
+    background: #eff6ff;
+}
 
-      border-radius: 16px;
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
 
-      box-shadow:
-        0 20px 45px
-        rgba(0,0,0,0.3);
+.modal-buttons button {
+    flex: 1;
+}
 
-      z-index: 5;
 
-      color: #111827;
-    }
+/* =========================
+   SUCCESS
+========================= */
 
-    .memory-photo {
-      width: 100%;
-      height: 135px;
+.success-box {
+    text-align: center;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.success-icon {
+    width: 75px;
+    height: 75px;
 
-      border-radius: 11px;
+    margin: 0 auto 20px;
 
-      font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      background:
-        linear-gradient(
-          135deg,
-          #93c5fd,
-          #f9a8d4
-        );
-    }
+    border-radius: 50%;
 
-    .memory-caption {
-      padding: 8px 4px 0;
+    background: #dcfce7;
 
-      font-size: 12px;
+    font-size: 34px;
+}
 
-      font-weight: 800;
-    }
+.gallery-link-box {
+    display: flex;
+    gap: 8px;
 
-    .card-1 {
-      left: 4%;
-      top: 18%;
-      transform: rotate(-8deg);
-    }
+    margin: 22px 0;
+}
 
-    .card-2 {
-      right: 4%;
-      top: 17%;
-      transform: rotate(8deg);
-    }
+.gallery-link-box input {
+    flex: 1;
 
-    .card-3 {
-      left: 10%;
-      bottom: 7%;
-      transform: rotate(6deg);
-    }
+    padding: 12px;
 
-    .card-4 {
-      right: 10%;
-      bottom: 7%;
-      transform: rotate(-7deg);
-    }
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
 
-    .card-5 {
-      left: 27%;
-      top: 8%;
-      transform:
-        rotate(-3deg)
-        scale(0.8);
-    }
+    background: #f9fafb;
+}
 
-    .card-6 {
-      right: 27%;
-      top: 8%;
-      transform:
-        rotate(4deg)
-        scale(0.8);
-    }
+.gallery-link-box button {
+    padding: 12px 15px;
 
-    /* =====================================
-       SECTION
-    ===================================== */
+    border: none;
+    border-radius: 10px;
 
-    .section {
-      padding: 90px 6%;
-    }
+    background: #2563eb;
+    color: white;
 
-    .glass-section {
-      max-width: 1150px;
+    font-weight: 700;
 
-      margin: 0 auto;
+    cursor: pointer;
+}
 
-      border-radius: 28px;
 
-      background:
-        rgba(255,255,255,0.13);
+/* =========================
+   GALLERY PAGE
+========================= */
 
-      border:
-        1px solid rgba(255,255,255,0.22);
+.gallery-page {
+    display: none;
 
-      backdrop-filter: blur(15px);
+    min-height: 100vh;
 
-      box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.2);
-    }
+    padding-bottom: 80px;
+}
 
-    .section-heading {
-      text-align: center;
+.gallery-header {
+    width: min(1100px, 90%);
 
-      max-width: 680px;
+    margin: 50px auto 30px;
 
-      margin: 0 auto 45px;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .section-heading h2 {
-      font-size:
-        clamp(32px,5vw,50px);
+    gap: 20px;
+}
 
-      letter-spacing: -2px;
+.gallery-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
 
-      margin-bottom: 12px;
-    }
+.gallery-emoji {
+    width: 75px;
+    height: 75px;
 
-    .section-heading p {
-      color:
-        rgba(255,255,255,0.8);
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    /* =====================================
-       CREATE / SHARE / COLLECT
-    ===================================== */
+    border-radius: 20px;
 
-    .features {
-      display: grid;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.2);
 
-      grid-template-columns:
-        repeat(3, 1fr);
+    font-size: 38px;
+}
 
-      gap: 20px;
-    }
+.gallery-info h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 5px;
+}
 
-    .feature-card {
-      position: relative;
+.gallery-info p {
+    color: rgba(255,255,255,0.7);
+}
 
-      padding: 34px 30px 30px;
+.gallery-id {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 6px;
+}
 
-      border-radius: 22px;
+.gallery-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-      background:
-        rgba(255,255,255,0.94);
+.gallery-btn {
+    border: none;
 
-      color: #111827;
+    padding: 13px 18px;
 
-      box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.12);
+    border-radius: 12px;
 
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    background: rgba(255,255,255,0.13);
+    color: white;
 
-      overflow: hidden;
-    }
+    border: 1px solid rgba(255,255,255,0.18);
 
-    .feature-card::after {
-      content: "";
+    font-weight: 700;
 
-      position: absolute;
+    cursor: pointer;
 
-      width: 120px;
-      height: 120px;
+    transition: 0.2s;
+}
 
-      right: -55px;
-      bottom: -55px;
+.gallery-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.2);
+}
 
-      border-radius: 50%;
+.gallery-btn.primary {
+    background: white;
+    color: #2563eb;
+}
 
-      background:
-        rgba(99,102,241,0.07);
-    }
 
-    .feature-card:hover {
-      transform:
-        translateY(-8px);
+/* =========================
+   GALLERY TOOLBAR
+========================= */
 
-      box-shadow:
-        0 25px 55px
-        rgba(0,0,0,0.22);
-    }
+.gallery-toolbar {
+    width: min(1100px, 90%);
+    margin: 0 auto 25px;
 
-    /* =====================================
-       NEW MODERN ICON
-    ===================================== */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .feature-icon {
-      width: 68px;
-      height: 68px;
+.photo-count {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.qr-button {
+    border: none;
+    background: none;
 
-      border-radius: 20px;
+    color: #bfdbfe;
 
-      margin-bottom: 22px;
+    font-weight: 700;
 
-      color: white;
+    cursor: pointer;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
 
-      box-shadow:
-        0 12px 28px
-        rgba(79,70,229,0.3);
+/* =========================
+   PHOTO GRID
+========================= */
 
-      transition:
-        transform 0.25s ease;
-    }
+.photo-grid {
+    width: min(1100px, 90%);
 
-    .feature-card:hover
-    .feature-icon {
-      transform:
-        rotate(-4deg)
-        scale(1.06);
-    }
+    margin: auto;
 
-    .feature-icon svg {
-      width: 32px;
-      height: 32px;
+    display: grid;
 
-      stroke: currentColor;
+    grid-template-columns: repeat(4, 1fr);
 
-      stroke-width: 1.8;
+    gap: 14px;
+}
 
-      fill: none;
+.photo-card {
+    position: relative;
 
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+    aspect-ratio: 1 / 1;
 
-    .feature-card h3 {
-      font-size: 23px;
+    overflow: hidden;
 
-      margin-bottom: 9px;
+    border-radius: 18px;
 
-      letter-spacing: -0.5px;
-    }
+    background: rgba(255,255,255,0.08);
 
-    .feature-card p {
-      color: #6b7280;
+    cursor: pointer;
 
-      font-size: 15px;
+    animation: photoIn 0.35s ease;
+}
 
-      margin-bottom: 20px;
-    }
+@keyframes photoIn {
 
-    .feature-action {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      border: none;
-
-      background: transparent;
-
-      color: #2563eb;
-
-      font-size: 14px;
-
-      font-weight: 800;
-
-      padding: 0;
-    }
-
-    .feature-action span {
-      transition:
-        transform 0.2s ease;
-    }
-
-    .feature-card:hover
-    .feature-action span {
-      transform:
-        translateX(4px);
-    }
-
-    /* =====================================
-       HOW IT WORKS
-    ===================================== */
-
-    .steps {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 25px;
-    }
-
-    .step {
-      text-align: center;
-
-      padding: 25px;
-    }
-
-    .step-number {
-      width: 55px;
-      height: 55px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin: 0 auto 18px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
-
-      font-size: 20px;
-
-      font-weight: 800;
-
-      box-shadow:
-        0 10px 25px
-        rgba(37,99,235,0.3);
-    }
-
-    .step h3 {
-      margin-bottom: 8px;
-    }
-
-    .step p {
-      color:
-        rgba(255,255,255,0.75);
-
-      font-size: 14px;
-    }
-
-    /* =====================================
-       MODAL
-    ===================================== */
-
-    .modal-overlay {
-      position: fixed;
-
-      inset: 0;
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-
-      background:
-        rgba(0,0,0,0.7);
-
-      backdrop-filter: blur(10px);
-
-      z-index: 3000;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 500px;
-
-      background: white;
-
-      color: #111827;
-
-      border-radius: 25px;
-
-      padding: 30px;
-
-      box-shadow:
-        0 30px 80px
-        rgba(0,0,0,0.35);
-
-      animation:
-        modalIn 0.25s ease;
-    }
-
-    @keyframes modalIn {
-
-      from {
+    from {
         opacity: 0;
+        transform: scale(0.96);
+    }
 
-        transform:
-          translateY(20px)
-          scale(0.97);
-      }
-
-      to {
+    to {
         opacity: 1;
+        transform: scale(1);
+    }
+}
 
-        transform:
-          translateY(0)
-          scale(1);
-      }
+.photo-card img {
+    width: 100%;
+    height: 100%;
 
+    object-fit: cover;
+
+    transition: 0.4s;
+}
+
+.photo-card:hover img {
+    transform: scale(1.06);
+}
+
+.photo-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+
+    padding: 25px 12px 12px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.65)
+    );
+
+    opacity: 0;
+
+    transition: 0.25s;
+}
+
+.photo-card:hover .photo-overlay {
+    opacity: 1;
+}
+
+
+/* =========================
+   EMPTY GALLERY
+========================= */
+
+.empty-gallery {
+    width: min(600px, 90%);
+
+    margin: 60px auto;
+
+    text-align: center;
+
+    padding: 60px 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(15px);
+}
+
+.empty-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.empty-gallery h2 {
+    margin-bottom: 10px;
+}
+
+.empty-gallery p {
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   QR MODAL
+========================= */
+
+.qr-container {
+    text-align: center;
+}
+
+.qr-container img {
+    width: 230px;
+    height: 230px;
+
+    margin: 20px auto;
+
+    display: block;
+
+    border-radius: 15px;
+}
+
+.qr-url {
+    padding: 12px;
+
+    background: #f3f4f6;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    word-break: break-all;
+
+    color: #374151;
+}
+
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(0,0,0,0.92);
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.55);
+
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .memory {
+        display: none;
     }
 
-    .modal-header {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: flex-start;
-
-      margin-bottom: 25px;
-    }
-
-    .modal-header h2 {
-      font-size: 28px;
-    }
-
-    .modal-header p {
-      color: #6b7280;
-
-      font-size: 14px;
-
-      margin-top: 4px;
-    }
-
-    .close-btn {
-      width: 38px;
-      height: 38px;
-
-      border: none;
-
-      border-radius: 50%;
-
-      background: #f3f4f6;
-
-      font-size: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-
-      margin-bottom: 7px;
-
-      font-size: 13px;
-
-      font-weight: 800;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-
-      padding: 13px 14px;
-
-      border:
-        1px solid #d1d5db;
-
-      border-radius: 12px;
-
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: #2563eb;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,0.1);
-    }
-
-    .form-group textarea {
-      min-height: 95px;
-
-      resize: vertical;
-    }
-
-    .emoji-title {
-      margin-bottom: 8px;
-
-      font-size: 13px;
-
-      font-weight: 800;
-    }
-
-    .emoji-options {
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 8px;
-
-      margin-bottom: 22px;
-    }
-
-    .emoji-option {
-      width: 43px;
-      height: 43px;
-
-      border:
-        1px solid #e5e7eb;
-
-      background: white;
-
-      border-radius: 11px;
-
-      font-size: 21px;
-    }
-
-    .emoji-option.selected {
-      border-color: #2563eb;
-
-      background: #eff6ff;
-
-      box-shadow:
-        0 0 0 2px
-        rgba(37,99,235,0.12);
-    }
-
-    .create-submit {
-      width: 100%;
-
-      padding: 15px;
-
-      border: none;
-
-      border-radius: 13px;
-
-      color: white;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
-
-      font-weight: 800;
-    }
-
-    /* =====================================
-       SUCCESS
-    ===================================== */
-
-    .success-screen {
-      display: none;
-
-      text-align: center;
-    }
-
-    .success-screen.active {
-      display: block;
-    }
-
-    .success-icon {
-      width: 70px;
-      height: 70px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin: 0 auto 18px;
-
-      border-radius: 50%;
-
-      background: #dcfce7;
-
-      color: #16a34a;
-
-      font-size: 32px;
-    }
-
-    .success-screen h2 {
-      font-size: 30px;
-
-      margin-bottom: 8px;
-    }
-
-    .success-screen p {
-      color: #6b7280;
-
-      font-size: 14px;
-
-      margin-bottom: 20px;
-    }
-
-    .gallery-link-box {
-      display: flex;
-
-      gap: 8px;
-
-      padding: 6px;
-
-      background: #f3f4f6;
-
-      border-radius: 12px;
-
-      margin-bottom: 15px;
-    }
-
-    .gallery-link-box input {
-      flex: 1;
-
-      min-width: 0;
-
-      border: none;
-
-      background: transparent;
-
-      padding: 10px;
-
-      outline: none;
-
-      font-size: 13px;
-    }
-
-    .copy-btn {
-      border: none;
-
-      padding: 10px 14px;
-
-      border-radius: 9px;
-
-      background: #111827;
-
-      color: white;
-
-      font-weight: 700;
-    }
-
-    .open-gallery-btn {
-      width: 100%;
-
-      padding: 14px;
-
-      border: none;
-
-      border-radius: 12px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
-
-      color: white;
-
-      font-weight: 800;
-    }
-
-    /* =====================================
-       GALLERY PAGE
-    ===================================== */
-
-    .gallery-page {
-      display: none;
-
-      min-height: 100vh;
-
-      padding-bottom: 50px;
-    }
-
-    .gallery-page.active {
-      display: block;
-    }
-
-    .gallery-top {
-      padding: 35px 6%;
-
-      background:
-        rgba(3,15,27,0.65);
-
-      backdrop-filter: blur(15px);
-
-      border-bottom:
-        1px solid rgba(255,255,255,0.15);
-    }
-
-    .back-btn {
-      border: none;
-
-      background: transparent;
-
-      color:
-        rgba(255,255,255,0.8);
-
-      font-weight: 700;
-
-      margin-bottom: 25px;
-    }
-
-    .gallery-header {
-      max-width: 1100px;
-
-      margin: auto;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: flex-end;
-
-      gap: 25px;
-    }
-
-    .gallery-title-area {
-      display: flex;
-
-      gap: 15px;
-
-      align-items: center;
-    }
-
-    .gallery-emoji {
-      width: 62px;
-      height: 62px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: white;
-
-      color: #111827;
-
-      border-radius: 17px;
-
-      font-size: 32px;
-    }
-
-    .gallery-title-area h1 {
-      font-size:
-        clamp(30px,5vw,48px);
-
-      letter-spacing: -2px;
-    }
-
-    .gallery-title-area p {
-      color:
-        rgba(255,255,255,0.7);
-    }
-
-    .gallery-actions {
-      display: flex;
-
-      gap: 10px;
-    }
-
-    .gallery-action {
-      border: none;
-
-      padding: 11px 17px;
-
-      border-radius: 11px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
-
-      color: white;
-
-      font-weight: 700;
-    }
-
-    .gallery-action.secondary {
-      background:
-        rgba(255,255,255,0.15);
-
-      border:
-        1px solid rgba(255,255,255,0.25);
-    }
-
-    .gallery-content {
-      max-width: 1100px;
-
-      margin: auto;
-
-      padding: 35px 6%;
-    }
-
-    .gallery-info {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      margin-bottom: 20px;
-    }
-
-    .photo-count {
-      font-size: 14px;
-
-      font-weight: 700;
-
-      color:
-        rgba(255,255,255,0.8);
-    }
-
-    .upload-label {
-      display: inline-flex;
-
-      align-items: center;
-
-      padding: 11px 16px;
-
-      border-radius: 11px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #8b5cf6
-        );
-
-      color: white;
-
-      font-weight: 800;
-
-      cursor: pointer;
-    }
-
-    #photoInput {
-      display: none;
+    .features,
+    .steps {
+        grid-template-columns: 1fr;
     }
 
     .photo-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      gap: 14px;
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .photo-item {
-      aspect-ratio: 1;
-
-      overflow: hidden;
-
-      border-radius: 15px;
-
-      background: #e5e7eb;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.25);
-    }
-
-    .photo-item img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      transition: 0.25s;
-    }
-
-    .photo-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .empty-gallery {
-      padding: 80px 20px;
-
-      text-align: center;
-
-      background:
-        rgba(255,255,255,0.12);
-
-      border:
-        2px dashed
-        rgba(255,255,255,0.25);
-
-      border-radius: 20px;
-    }
-
-    .empty-gallery-icon {
-      font-size: 45px;
-
-      margin-bottom: 10px;
-    }
-
-    .empty-gallery p {
-      color:
-        rgba(255,255,255,0.7);
-    }
-
-    /* =====================================
-       LIGHTBOX
-    ===================================== */
-
-    .lightbox {
-      position: fixed;
-
-      inset: 0;
-
-      display: none;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding: 25px;
-
-      background:
-        rgba(0,0,0,0.9);
-
-      z-index: 5000;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: 95%;
-
-      max-height: 90vh;
-
-      object-fit: contain;
-
-      border-radius: 10px;
-    }
-
-    .lightbox-close {
-      position: absolute;
-
-      top: 20px;
-
-      right: 25px;
-
-      width: 45px;
-
-      height: 45px;
-
-      border: none;
-
-      border-radius: 50%;
-
-      background: white;
-
-      font-size: 24px;
-    }
-
-    /* =====================================
-       FOOTER
-    ===================================== */
-
-    footer {
-      padding: 45px 6%;
-
-      text-align: center;
-
-      background:
-        rgba(3,15,27,0.8);
-
-      backdrop-filter: blur(10px);
-
-      border-top:
-        1px solid rgba(255,255,255,0.12);
-
-      color:
-        rgba(255,255,255,0.6);
-
-      font-size: 13px;
-    }
-
-    /* =====================================
-       MOBILE
-    ===================================== */
-
-    @media (max-width: 800px) {
-
-      .memory-card {
-        opacity: 0.45;
-
-        transform:
-          scale(0.7);
-      }
-
-      .card-1 {
-        left: -45px;
-      }
-
-      .card-2 {
-        right: -45px;
-      }
-
-      .card-3 {
-        left: -45px;
-      }
-
-      .card-4 {
-        right: -45px;
-      }
-
-      .card-5,
-      .card-6 {
-        display: none;
-      }
-
-      .features,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-header {
-        align-items: flex-start;
-
+    .gallery-header {
         flex-direction: column;
-      }
+        align-items: flex-start;
+    }
 
-      .gallery-actions {
+    .gallery-actions {
         width: 100%;
-      }
+    }
 
-      .gallery-action {
+    .gallery-btn {
         flex: 1;
-      }
+    }
+}
 
-      .photo-grid {
-        grid-template-columns:
-          repeat(3,1fr);
-      }
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 15px 20px;
     }
 
-    @media (max-width: 500px) {
-
-      .navbar {
-        padding: 15px 5%;
-      }
-
-      .logo {
-        font-size: 18px;
-      }
-
-      .nav-btn {
-        padding: 9px 12px;
-
-        font-size: 13px;
-      }
-
-      .hero {
+    .hero {
         min-height: 650px;
-
-        padding: 60px 5%;
-      }
-
-      .hero h1 {
-        letter-spacing: -2.5px;
-      }
-
-      .hero-description {
-        font-size: 16px;
-      }
-
-      .memory-card {
-        display: none;
-      }
-
-      .section {
-        padding: 60px 5%;
-      }
-
-      .glass-section {
-        border-radius: 22px;
-
-        padding: 25px;
-      }
-
-      .section-heading {
-        margin-bottom: 30px;
-      }
-
-      .modal {
-        padding: 22px;
-
-        border-radius: 20px;
-      }
-
-      .gallery-top {
-        padding: 25px 5%;
-      }
-
-      .gallery-content {
-        padding: 25px 5%;
-      }
-
-      .gallery-title-area h1 {
-        font-size: 31px;
-      }
-
-      .photo-grid {
-        grid-template-columns:
-          repeat(2,1fr);
-
-        gap: 9px;
-      }
-
-      .gallery-info {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 12px;
-      }
-
-      .upload-label {
-        width: 100%;
-
-        justify-content: center;
-      }
-
-      .feature-card {
-        padding: 28px 25px;
-      }
-
     }
 
-  </style>
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .features {
+        width: 92%;
+    }
+
+    .how-section {
+        width: 92%;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+    }
+
+    .gallery-info {
+        align-items: flex-start;
+    }
+
+    .gallery-emoji {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+
+    .gallery-toolbar {
+        width: 92%;
+    }
+
+    .gallery-header {
+        width: 92%;
+    }
+
+    .modal-box {
+        padding: 23px;
+    }
+}
+
+</style>
 </head>
 
 
 <body>
 
-  <!-- =====================================
-       NAVBAR
-  ===================================== -->
 
-  <nav class="navbar">
+<!-- =========================
+     NAVBAR
+========================= -->
 
-    <a
-      href="#"
-      class="logo"
-      onclick="showHome()"
-    >
-      📸 Open Gallery
-    </a>
+<nav class="navbar">
 
-    <div class="nav-actions">
+    <button class="logo" onclick="goHome()">
+        📸 Open Gallery
+    </button>
 
-      <button
-        class="nav-btn"
-        onclick="openCreateModal()"
-      >
-        Create Gallery
-      </button>
+    <button class="nav-create" onclick="openCreateModal()">
+        + Create Gallery
+    </button>
 
+</nav>
+
+
+<!-- =========================
+     HOME PAGE
+========================= -->
+
+<main id="homePage">
+
+
+<section class="hero">
+
+    <div class="memory memory-1">
+        <div class="memory-photo">📸</div>
+        <p>Best day ever</p>
     </div>
 
-  </nav>
+    <div class="memory memory-2">
+        <div class="memory-photo">💍</div>
+        <p>Just married</p>
+    </div>
+
+    <div class="memory memory-3">
+        <div class="memory-photo">🎉</div>
+        <p>With the crew</p>
+    </div>
+
+    <div class="memory memory-4">
+        <div class="memory-photo">🌅</div>
+        <p>11:42 PM</p>
+    </div>
 
 
-  <!-- =====================================
-       HOME PAGE
-  ===================================== -->
+    <div class="hero-content">
 
-  <main id="homePage">
-
-    <section class="hero">
-
-      <!-- FLOATING MEMORY CARDS -->
-
-      <div class="memory-card card-1">
-
-        <div class="memory-photo">
-          🌄
-        </div>
-
-        <div class="memory-caption">
-          The view 😍
-        </div>
-
-      </div>
-
-
-      <div class="memory-card card-2">
-
-        <div class="memory-photo">
-          👨‍👩‍👧‍👦
-        </div>
-
-        <div class="memory-caption">
-          Best friends ❤️
-        </div>
-
-      </div>
-
-
-      <div class="memory-card card-3">
-
-        <div class="memory-photo">
-          🔥
-        </div>
-
-        <div class="memory-caption">
-          Good vibes 🔥
-        </div>
-
-      </div>
-
-
-      <div class="memory-card card-4">
-
-        <div class="memory-photo">
-          🏔️
-        </div>
-
-        <div class="memory-caption">
-          Road trip ✈️
-        </div>
-
-      </div>
-
-
-      <div class="memory-card card-5">
-
-        <div class="memory-photo">
-          🎉
-        </div>
-
-        <div class="memory-caption">
-          Party time
-        </div>
-
-      </div>
-
-
-      <div class="memory-card card-6">
-
-        <div class="memory-photo">
-          ❤️
-        </div>
-
-        <div class="memory-caption">
-          Good memories
-        </div>
-
-      </div>
-
-
-      <!-- HERO CONTENT -->
-
-      <div class="hero-content">
-
-        <div class="hero-badge">
-          ✨ Share memories together
+        <div class="badge">
+            ✨ Everyone's memories. One place.
         </div>
 
         <h1>
-          One event.<br />
-
-          <span>
-            Everyone's photos.
-          </span>
+            One event.<br>
+            <span>Everyone's photos.</span>
         </h1>
 
-        <p class="hero-description">
-
-          Create a shared photo gallery,
-          invite everyone with one QR code,
-          and collect all your memories
-          in one beautiful place.
-
+        <p>
+            Create a shared gallery, invite everyone with one link or QR code,
+            and collect all the best moments from your event in one beautiful place.
         </p>
-
 
         <div class="hero-buttons">
 
-          <button
-            class="primary-btn"
-            onclick="openCreateModal()"
-          >
-            Create a Gallery →
-          </button>
+            <button
+                class="primary-btn"
+                onclick="openCreateModal()"
+            >
+                Create a Gallery
+            </button>
 
-          <button
-            class="secondary-btn"
-            onclick="joinGallery()"
-          >
-            Join a Gallery
-          </button>
+            <button
+                class="secondary-btn"
+                onclick="joinGallery()"
+            >
+                Join a Gallery
+            </button>
 
         </div>
 
+    </div>
 
-        <p class="trust-line">
-
-          ⚡ No app
-          &nbsp;&nbsp;
-          🔒 Private by design
-          &nbsp;&nbsp;
-          🖼️ High quality
-          &nbsp;&nbsp;
-          😊 Easy for everyone
-
-        </p>
-
-      </div>
-
-    </section>
+</section>
 
 
-    <!-- =====================================
-         CREATE / SHARE / COLLECT
-    ===================================== -->
+<!-- FEATURES -->
 
-    <section class="section">
+<section class="features">
 
-      <div class="glass-section">
 
-        <div
-          class="section-heading"
-          style="padding-top:45px;"
-        >
+    <!-- CREATE -->
 
-          <h2>
-            Everything your event needs
-          </h2>
+    <div class="feature-card">
 
-          <p>
-            One simple place for everyone
-            to collect the moments that matter.
-          </p>
+        <div class="icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M12 3v18"/>
+                <path d="M3 12h18"/>
+                <path d="M5 5l2 2"/>
+                <path d="M17 17l2 2"/>
+            </svg>
 
         </div>
 
-
-        <div
-          class="features"
-          style="padding:0 45px 45px;"
-        >
-
-          <!-- CREATE -->
-
-          <div class="feature-card">
-
-            <div class="feature-icon">
-
-              <!-- Sparkle / Create SVG -->
-
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-
-                <path
-                  d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3z"
-                />
-
-                <path
-                  d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16z"
-                />
-
-              </svg>
-
-            </div>
-
-
-            <h3>
-              Create
-            </h3>
-
-            <p>
-              Start a beautiful shared gallery
-              for your wedding, birthday,
-              trip, party, or special event.
-            </p>
-
-
-            <button
-              class="feature-action"
-              onclick="openCreateModal()"
-            >
-
-              Create your gallery
-
-              <span>
-                →
-              </span>
-
-            </button>
-
-          </div>
-
-
-          <!-- SHARE -->
-
-          <div class="feature-card">
-
-            <div class="feature-icon">
-
-              <!-- Share SVG -->
-
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-
-                <circle
-                  cx="18"
-                  cy="5"
-                  r="2.5"
-                />
-
-                <circle
-                  cx="6"
-                  cy="12"
-                  r="2.5"
-                />
-
-                <circle
-                  cx="18"
-                  cy="19"
-                  r="2.5"
-                />
-
-                <path
-                  d="M8.2 10.8l7.5-4.3"
-                />
-
-                <path
-                  d="M8.2 13.2l7.5 4.3"
-                />
-
-              </svg>
-
-            </div>
-
-
-            <h3>
-              Share
-            </h3>
-
-            <p>
-              Share one simple link or QR code
-              with your guests. No complicated
-              setup or app download.
-            </p>
-
-
-            <button
-              class="feature-action"
-              onclick="shareFeature()"
-            >
-
-              See how sharing works
-
-              <span>
-                →
-              </span>
-
-            </button>
-
-          </div>
-
-
-          <!-- COLLECT -->
-
-          <div class="feature-card">
-
-            <div class="feature-icon">
-
-              <!-- Photo / Collect SVG -->
-
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-
-                <rect
-                  x="3"
-                  y="4"
-                  width="18"
-                  height="16"
-                  rx="3"
-                />
-
-                <circle
-                  cx="8.5"
-                  cy="9"
-                  r="1.5"
-                />
-
-                <path
-                  d="M21 16l-5-5-4 4-2-2-7 7"
-                />
-
-              </svg>
-
-            </div>
-
-
-            <h3>
-              Collect
-            </h3>
-
-            <p>
-              Everyone adds their favorite
-              photos so all the best moments
-              end up in one place.
-            </p>
-
-
-            <button
-              class="feature-action"
-              onclick="collectFeature()"
-            >
-
-              Start collecting
-
-              <span>
-                →
-              </span>
-
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================
-         HOW IT WORKS
-    ===================================== -->
-
-    <section class="section">
-
-      <div class="section-heading">
-
-        <h2>
-          How Open Gallery works
-        </h2>
+        <h3>Create</h3>
 
         <p>
-          Three simple steps.
-          That's it.
+            Start a beautiful shared gallery for your event.
         </p>
 
-      </div>
+        <button
+            class="feature-action"
+            onclick="openCreateModal()"
+        >
+            Create now →
+        </button>
+
+    </div>
 
 
-      <div class="steps">
+    <!-- SHARE -->
 
-        <div class="step">
+    <div class="feature-card">
 
-          <div class="step-number">
-            1
-          </div>
+        <div class="icon">
 
-          <h3>
-            Create your gallery
-          </h3>
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
 
-          <p>
-            Give your event a name and
-            create your shared gallery
-            in seconds.
-          </p>
-
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-number">
-            2
-          </div>
-
-          <h3>
-            Share the link
-          </h3>
-
-          <p>
-            Send the link or show the QR
-            code to your guests.
-          </p>
+                <path d="M8.6 13.5l6.8 4"/>
+                <path d="M15.4 6.5l-6.8 4"/>
+            </svg>
 
         </div>
 
+        <h3>Share</h3>
 
-        <div class="step">
+        <p>
+            Share one simple link or QR code with everyone.
+        </p>
 
-          <div class="step-number">
-            3
-          </div>
+        <button
+            class="feature-action"
+            onclick="shareFeature()"
+        >
+            Share gallery →
+        </button>
 
-          <h3>
-            Collect memories
-          </h3>
+    </div>
 
-          <p>
-            Everyone uploads their photos
-            into one shared place.
-          </p>
+
+    <!-- COLLECT -->
+
+    <div class="feature-card">
+
+        <div class="icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    rx="2"
+                />
+
+                <circle
+                    cx="8.5"
+                    cy="9"
+                    r="1.5"
+                />
+
+                <path d="M21 15l-5-5L5 20"/>
+            </svg>
 
         </div>
 
-      </div>
+        <h3>Collect</h3>
 
-    </section>
+        <p>
+            Everyone adds their favorite photos without signing up.
+        </p>
 
-  </main>
+        <button
+            class="feature-action"
+            onclick="collectFeature()"
+        >
+            Add photos →
+        </button>
 
-
-  <!-- =====================================
-       GALLERY PAGE
-  ===================================== -->
-
-  <section
-    id="galleryPage"
-    class="gallery-page"
-  >
-
-    <div class="gallery-top">
-
-      <button
-        class="back-btn"
-        onclick="showHome()"
-      >
-        ← Back to Open Gallery
-      </button>
+    </div>
 
 
-      <div class="gallery-header">
+</section>
 
-        <div class="gallery-title-area">
 
-          <div
-            id="galleryEmoji"
-            class="gallery-emoji"
-          >
-            🎉
-          </div>
+<!-- HOW IT WORKS -->
 
-          <div>
+<section class="how-section">
 
-            <h1 id="galleryTitle">
-              My Gallery
-            </h1>
+    <h2 class="section-title">
+        How it works
+    </h2>
 
-            <p id="galleryDescription">
-              Shared memories
+    <p class="section-subtitle">
+        Three simple steps. That's it.
+    </p>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Create your gallery</h3>
+
+            <p>
+                Give your event a name and create your shared photo space.
             </p>
 
-          </div>
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Share the QR</h3>
+
+            <p>
+                Put the QR code on tables, invitations, screens or signs.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Collect memories</h3>
+
+            <p>
+                Everyone can add photos and see the memories together.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     GALLERY PAGE
+========================= -->
+
+<section
+    id="galleryPage"
+    class="gallery-page"
+>
+
+
+    <div class="gallery-header">
+
+        <div class="gallery-info">
+
+            <div
+                class="gallery-emoji"
+                id="galleryEmoji"
+            >
+                🎉
+            </div>
+
+            <div>
+
+                <h1 id="galleryTitle">
+                    My Gallery
+                </h1>
+
+                <p id="galleryDescription">
+                    Everyone's favorite moments.
+                </p>
+
+                <div
+                    class="gallery-id"
+                    id="galleryId"
+                ></div>
+
+            </div>
 
         </div>
 
 
         <div class="gallery-actions">
 
-          <button
-            class="gallery-action secondary"
-            onclick="showGalleryLink()"
-          >
-            🔗 Share
-          </button>
+            <button
+                class="gallery-btn"
+                onclick="showQRCode()"
+            >
+                ▣ QR Code
+            </button>
 
-          <button
-            class="gallery-action"
-            onclick="document.getElementById('photoInput').click()"
-          >
-            + Add Photos
-          </button>
+            <button
+                class="gallery-btn"
+                onclick="shareGallery()"
+            >
+                🔗 Share
+            </button>
+
+            <button
+                class="gallery-btn primary"
+                onclick="openPhotoPicker()"
+            >
+                + Add Photos
+            </button>
 
         </div>
-
-      </div>
 
     </div>
 
 
-    <div class="gallery-content">
-
-      <div class="gallery-info">
+    <div class="gallery-toolbar">
 
         <div
-          id="photoCount"
-          class="photo-count"
+            class="photo-count"
+            id="photoCount"
         >
-          0 photos
+            0 photos
         </div>
 
-
-        <label class="upload-label">
-
-          📸 Add Photos
-
-          <input
-            type="file"
-            id="photoInput"
-            accept="image/*"
-            multiple
-          />
-
-        </label>
-
-      </div>
-
-
-      <div
-        id="photoGrid"
-        class="photo-grid"
-      ></div>
-
-
-      <div
-        id="emptyGallery"
-        class="empty-gallery"
-      >
-
-        <div class="empty-gallery-icon">
-          📷
-        </div>
-
-        <h3>
-          No photos yet
-        </h3>
-
-        <p>
-          Be the first person to add
-          a memory to this gallery.
-        </p>
-
-      </div>
+        <button
+            class="qr-button"
+            onclick="showQRCode()"
+        >
+            Invite people with QR →
+        </button>
 
     </div>
 
-  </section>
 
+    <!-- EMPTY STATE -->
 
-  <!-- =====================================
-       CREATE MODAL
-  ===================================== -->
+    <div
+        class="empty-gallery"
+        id="emptyGallery"
+    >
 
-  <div
-    id="createModal"
-    class="modal-overlay"
-  >
-
-    <div class="modal">
-
-
-      <div id="createForm">
-
-        <div class="modal-header">
-
-          <div>
-
-            <h2>
-              Create your gallery
-            </h2>
-
-            <p>
-              Start collecting memories
-              in seconds.
-            </p>
-
-          </div>
-
-
-          <button
-            class="close-btn"
-            onclick="closeCreateModal()"
-          >
-            ×
-          </button>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="eventName">
-            Event name
-          </label>
-
-          <input
-            id="eventName"
-            type="text"
-            placeholder="e.g. Sarah & John's Wedding"
-            maxlength="80"
-          />
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="eventDescription">
-
-            Description
-
-            <span
-              style="
-                font-weight:400;
-                color:#9ca3af;
-              "
-            >
-              (optional)
-            </span>
-
-          </label>
-
-          <textarea
-            id="eventDescription"
-            placeholder="Tell your guests what this gallery is for..."
-            maxlength="200"
-          ></textarea>
-
-        </div>
-
-
-        <div class="emoji-title">
-          Choose a gallery icon
-        </div>
-
-
-        <div class="emoji-options">
-
-          <button
-            class="emoji-option selected"
-            data-emoji="🎉"
-          >
-            🎉
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="💍"
-          >
-            💍
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="🎂"
-          >
-            🎂
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="❤️"
-          >
-            ❤️
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="✈️"
-          >
-            ✈️
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="👶"
-          >
-            👶
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="🎓"
-          >
-            🎓
-          </button>
-
-          <button
-            class="emoji-option"
-            data-emoji="🌴"
-          >
-            🌴
-          </button>
-
-        </div>
-
-
-        <button
-          class="create-submit"
-          onclick="createGallery()"
-        >
-          Create Gallery →
-        </button>
-
-      </div>
-
-
-      <!-- SUCCESS -->
-
-      <div
-        id="successScreen"
-        class="success-screen"
-      >
-
-        <div class="success-icon">
-          ✓
+        <div class="empty-icon">
+            📸
         </div>
 
         <h2>
-          Gallery created!
+            Your gallery is waiting
         </h2>
 
         <p>
-          Your gallery is ready.
-          Share the link with your guests.
+            Add the first photo and start collecting memories.
+            Then share the gallery with everyone at your event.
+        </p>
+
+        <button
+            class="primary-btn"
+            onclick="openPhotoPicker()"
+        >
+            Add the first photo
+        </button>
+
+    </div>
+
+
+    <!-- PHOTO GRID -->
+
+    <div
+        class="photo-grid"
+        id="photoGrid"
+    ></div>
+
+
+    <!-- HIDDEN FILE INPUT -->
+
+    <input
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        multiple
+        hidden
+    >
+
+</section>
+
+
+<!-- =========================
+     CREATE MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="createModal"
+>
+
+    <div class="modal-box">
+
+        <h2>
+            Create your gallery
+        </h2>
+
+        <p>
+            Give your event a name and start collecting memories.
+        </p>
+
+
+        <div class="form-group">
+
+            <label>
+                Event name
+            </label>
+
+            <input
+                id="eventName"
+                type="text"
+                placeholder="e.g. Sarah & John's Wedding"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="eventDescription"
+                placeholder="e.g. Share your favorite moments from our wedding!"
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Choose an icon
+            </label>
+
+            <div class="emoji-picker">
+
+                <button
+                    class="emoji-option selected"
+                    onclick="selectEmoji(this,'🎉')"
+                >
+                    🎉
+                </button>
+
+                <button
+                    class="emoji-option"
+                    onclick="selectEmoji(this,'💍')"
+                >
+                    💍
+                </button>
+
+                <button
+                    class="emoji-option"
+                    onclick="selectEmoji(this,'🎂')"
+                >
+                    🎂
+                </button>
+
+                <button
+                    class="emoji-option"
+                    onclick="selectEmoji(this,'🎓')"
+                >
+                    🎓
+                </button>
+
+                <button
+                    class="emoji-option"
+                    onclick="selectEmoji(this,'✈️')"
+                >
+                    ✈️
+                </button>
+
+                <button
+                    class="emoji-option"
+                    onclick="selectEmoji(this,'🏖️')"
+                >
+                    🏖️
+                </button>
+
+                <button
+                    class="emoji-option"
+                    onclick="selectEmoji(this,'❤️')"
+                >
+                    ❤️
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="secondary-btn"
+                style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;"
+                onclick="closeCreateModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="createGallery()"
+            >
+                Create Gallery
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SUCCESS MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="successModal"
+>
+
+    <div class="modal-box success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Gallery created!
+        </h2>
+
+        <p>
+            Your gallery is ready. Share this link with your guests.
         </p>
 
 
         <div class="gallery-link-box">
 
-          <input
-            id="galleryLink"
-            readonly
-          />
+            <input
+                id="galleryLink"
+                readonly
+            >
 
-          <button
-            class="copy-btn"
-            onclick="copyGalleryLink()"
-          >
-            Copy
-          </button>
+            <button onclick="copyGalleryLink()">
+                Copy
+            </button>
 
         </div>
 
 
         <button
-          class="open-gallery-btn"
-          onclick="openCreatedGallery()"
+            class="primary-btn"
+            style="width:100%;"
+            onclick="openCreatedGallery()"
         >
-          Open My Gallery →
+            Open Gallery
         </button>
-
-      </div>
 
     </div>
 
-  </div>
+</div>
 
 
-  <!-- =====================================
-       LIGHTBOX
-  ===================================== -->
+<!-- =========================
+     QR MODAL
+========================= -->
 
-  <div
-    id="lightbox"
+<div
+    class="modal"
+    id="qrModal"
+>
+
+    <div class="modal-box qr-container">
+
+        <h2>
+            Scan to join
+        </h2>
+
+        <p>
+            Guests can scan this QR code to open your gallery.
+        </p>
+
+
+        <img
+            id="qrImage"
+            src=""
+            alt="Gallery QR Code"
+        >
+
+
+        <div
+            class="qr-url"
+            id="qrUrl"
+        ></div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="secondary-btn"
+                style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;"
+                onclick="closeQRCode()"
+            >
+                Close
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="copyGalleryLink()"
+            >
+                Copy Link
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     LIGHTBOX
+========================= -->
+
+<div
     class="lightbox"
+    id="lightbox"
     onclick="closeLightbox()"
-  >
+>
 
     <button
-      class="lightbox-close"
-      onclick="closeLightbox()"
+        class="lightbox-close"
+        onclick="closeLightbox()"
     >
-      ×
+        ×
     </button>
 
     <img
-      id="lightboxImage"
-      src=""
-      alt="Gallery photo"
-      onclick="event.stopPropagation()"
-    />
+        id="lightboxImage"
+        src=""
+        alt="Gallery photo"
+        onclick="event.stopPropagation()"
+    >
 
-  </div>
-
-
-  <!-- =====================================
-       FOOTER
-  ===================================== -->
-
-  <footer>
-
-    📸 Open Gallery
-
-    <br /><br />
-
-    Made for memories that last forever.
-
-    <br /><br />
-
-    © 2026 Open Gallery
-
-  </footer>
+</div>
 
 
-  <!-- =====================================
-       JAVASCRIPT
-  ===================================== -->
+<!-- =========================
+     FOOTER
+========================= -->
 
-  <script>
+<footer>
 
-    let selectedEmoji = "🎉";
+    <p>
+        📸 Open Gallery — Share the moments that matter.
+    </p>
 
-    let currentGallery = null;
-
-    let photos = [];
+</footer>
 
 
-    /* =====================================
-       CREATE MODAL
-    ===================================== */
+<script>
 
-    function openCreateModal() {
+/* =========================
+   VARIABLES
+========================= */
 
-      document
+let currentGallery = null;
+
+let selectedEmoji = "🎉";
+
+let photos = [];
+
+
+/* =========================
+   HOME
+========================= */
+
+function goHome() {
+
+    document.getElementById("homePage").style.display = "block";
+
+    document.getElementById("galleryPage").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================
+   CREATE MODAL
+========================= */
+
+function openCreateModal() {
+
+    document
         .getElementById("createModal")
         .classList.add("active");
 
-      document
-        .getElementById("createForm")
-        .style.display = "block";
+}
 
-      document
-        .getElementById("successScreen")
-        .classList.remove("active");
+function closeCreateModal() {
 
-      document
-        .getElementById("eventName")
-        .focus();
-
-    }
-
-
-    function closeCreateModal() {
-
-      document
+    document
         .getElementById("createModal")
         .classList.remove("active");
 
-    }
+}
 
 
-    /* =====================================
-       EMOJI SELECTOR
-    ===================================== */
+/* =========================
+   EMOJI
+========================= */
+
+function selectEmoji(button, emoji) {
+
+    selectedEmoji = emoji;
 
     document
-      .querySelectorAll(".emoji-option")
-      .forEach(button => {
+        .querySelectorAll(".emoji-option")
+        .forEach(option => {
 
-        button.addEventListener(
-          "click",
-          function() {
+            option.classList.remove("selected");
 
-            document
-              .querySelectorAll(".emoji-option")
-              .forEach(item => {
+        });
 
-                item.classList.remove(
-                  "selected"
-                );
-
-              });
+    button.classList.add("selected");
+}
 
 
-            this.classList.add(
-              "selected"
-            );
+/* =========================
+   CREATE GALLERY
+========================= */
 
+function createGallery() {
 
-            selectedEmoji =
-              this.dataset.emoji;
-
-          }
-        );
-
-      });
-
-
-    /* =====================================
-       CREATE GALLERY
-    ===================================== */
-
-    function createGallery() {
-
-      const name =
+    const name =
         document
-          .getElementById("eventName")
-          .value
-          .trim();
+        .getElementById("eventName")
+        .value
+        .trim();
 
-
-      const description =
+    const description =
         document
-          .getElementById("eventDescription")
-          .value
-          .trim();
+        .getElementById("eventDescription")
+        .value
+        .trim();
 
 
-      if (!name) {
+    if (!name) {
 
-        alert(
-          "Please enter an event name."
-        );
-
-        document
-          .getElementById("eventName")
-          .focus();
+        alert("Please enter an event name.");
 
         return;
 
-      }
+    }
 
 
-      const galleryId =
+    const galleryId =
         Math.random()
-          .toString(36)
-          .substring(2,8)
-          .toUpperCase();
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
 
 
-      currentGallery = {
+    currentGallery = {
 
         id: galleryId,
 
         name: name,
 
         description:
-          description ||
-          "Shared memories",
+            description ||
+            "Everyone's favorite moments.",
 
-        emoji:
-          selectedEmoji
+        emoji: selectedEmoji
 
-      };
-
-
-      photos = [];
+    };
 
 
-      const galleryUrl =
-        window.location.href
-          .split("#")[0] +
-        "#gallery-" +
-        galleryId;
+    photos = [];
 
 
-      document
-        .getElementById("galleryLink")
-        .value =
-        galleryUrl;
+    const link =
+        window.location.href.split("#")[0]
+        + "#gallery-"
+        + galleryId;
 
 
-      document
-        .getElementById("createForm")
-        .style.display =
-        "none";
+    document.getElementById("galleryLink").value = link;
 
 
-      document
-        .getElementById("successScreen")
-        .classList.add(
-          "active"
-        );
-
-    }
+    closeCreateModal();
 
 
-    /* =====================================
-       COPY LINK
-    ===================================== */
+    document
+        .getElementById("successModal")
+        .classList.add("active");
 
-    function copyGalleryLink() {
-
-      const input =
-        document.getElementById(
-          "galleryLink"
-        );
+}
 
 
-      input.select();
+/* =========================
+   OPEN CREATED GALLERY
+========================= */
+
+function openCreatedGallery() {
+
+    document
+        .getElementById("successModal")
+        .classList.remove("active");
+
+    showGallery();
+
+}
 
 
-      navigator.clipboard
-        .writeText(input.value)
-        .then(() => {
+/* =========================
+   SHOW GALLERY
+========================= */
 
-          const button =
-            document.querySelector(
-              ".copy-btn"
-            );
+function showGallery() {
 
+    if (!currentGallery) {
 
-          const oldText =
-            button.innerText;
+        openCreateModal();
 
-
-          button.innerText =
-            "Copied ✓";
-
-
-          setTimeout(() => {
-
-            button.innerText =
-              oldText;
-
-          },1800);
-
-        })
-        .catch(() => {
-
-          alert(
-            "Gallery link copied!"
-          );
-
-        });
-
-    }
-
-
-    /* =====================================
-       OPEN CREATED GALLERY
-    ===================================== */
-
-    function openCreatedGallery() {
-
-      closeCreateModal();
-
-      showGallery();
-
-    }
-
-
-    function showGallery() {
-
-      if (!currentGallery) {
         return;
-      }
+
+    }
 
 
-      document
-        .getElementById("homePage")
-        .style.display =
-        "none";
+    document.getElementById("homePage").style.display = "none";
+
+    document.getElementById("galleryPage").style.display = "block";
 
 
-      document
-        .getElementById("galleryPage")
-        .classList.add(
-          "active"
-        );
-
-
-      document
-        .getElementById("galleryTitle")
-        .innerText =
+    document.getElementById("galleryTitle").textContent =
         currentGallery.name;
 
 
-      document
-        .getElementById("galleryDescription")
-        .innerText =
+    document.getElementById("galleryDescription").textContent =
         currentGallery.description;
 
 
-      document
-        .getElementById("galleryEmoji")
-        .innerText =
+    document.getElementById("galleryEmoji").textContent =
         currentGallery.emoji;
 
 
-      renderPhotos();
+    document.getElementById("galleryId").textContent =
+        "Gallery ID: " + currentGallery.id;
 
 
-      window.scrollTo(0,0);
-
-    }
+    renderPhotos();
 
 
-    /* =====================================
-       HOME
-    ===================================== */
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-    function showHome() {
-
-      document
-        .getElementById("galleryPage")
-        .classList.remove(
-          "active"
-        );
+}
 
 
-      document
-        .getElementById("homePage")
-        .style.display =
-        "block";
+/* =========================
+   PHOTO PICKER
+========================= */
 
+function openPhotoPicker() {
 
-      window.scrollTo(0,0);
-
-    }
-
-
-    /* =====================================
-       JOIN GALLERY
-    ===================================== */
-
-    function joinGallery() {
-
-      const galleryId =
-        prompt(
-          "Enter the Gallery ID shared by the host:"
-        );
-
-
-      if (!galleryId) {
-        return;
-      }
-
-
-      alert(
-        "Gallery joining will be connected to Supabase soon.\n\n" +
-        "Gallery ID: " +
-        galleryId.toUpperCase()
-      );
-
-    }
-
-
-    /* =====================================
-       CREATE / SHARE / COLLECT ACTIONS
-    ===================================== */
-
-    function shareFeature() {
-
-      if (!currentGallery) {
-
-        alert(
-          "Create a gallery first.\n\n" +
-          "Once your gallery is created, " +
-          "you can share it using a simple link or QR code."
-        );
+    if (!currentGallery) {
 
         openCreateModal();
 
         return;
 
-      }
-
-
-      showGalleryLink();
-
     }
 
-
-    function collectFeature() {
-
-      if (!currentGallery) {
-
-        alert(
-          "Create a gallery first.\n\n" +
-          "Once your gallery is ready, " +
-          "everyone can add their photos."
-        );
-
-        openCreateModal();
-
-        return;
-
-      }
-
-
-      showGallery();
-
-      setTimeout(() => {
-
-        document
-          .getElementById("photoInput")
-          .click();
-
-      },300);
-
-    }
-
-
-    /* =====================================
-       SHARE GALLERY
-    ===================================== */
-
-    function showGalleryLink() {
-
-      if (!currentGallery) {
-
-        alert(
-          "Create a gallery first."
-        );
-
-        return;
-
-      }
-
-
-      const galleryUrl =
-        window.location.href
-          .split("#")[0] +
-        "#gallery-" +
-        currentGallery.id;
-
-
-      navigator.clipboard
-        .writeText(galleryUrl)
-        .then(() => {
-
-          alert(
-            "Gallery link copied!\n\n" +
-            galleryUrl
-          );
-
-        })
-        .catch(() => {
-
-          alert(
-            "Gallery ID:\n\n" +
-            currentGallery.id
-          );
-
-        });
-
-    }
-
-
-    /* =====================================
-       PHOTO UPLOAD
-    ===================================== */
 
     document
-      .getElementById("photoInput")
-      .addEventListener(
-        "change",
-        function(event) {
+        .getElementById("photoInput")
+        .click();
 
-          const files =
-            Array.from(
-              event.target.files
-            );
+}
 
 
-          files.forEach(file => {
+/* =========================
+   PHOTO UPLOAD
+========================= */
 
-            if (
-              !file.type
-                .startsWith("image/")
-            ) {
+document
+    .getElementById("photoInput")
+    .addEventListener("change", function(event) {
 
-              return;
+        const files = Array.from(event.target.files);
+
+
+        files.forEach(file => {
+
+            if (!file.type.startsWith("image/")) {
+
+                return;
 
             }
 
 
             const imageUrl =
-              URL.createObjectURL(
-                file
-              );
+                URL.createObjectURL(file);
 
 
             photos.push({
 
-              url: imageUrl
+                url: imageUrl,
+
+                name: file.name
 
             });
 
-          });
+        });
 
 
-          renderPhotos();
+        renderPhotos();
 
 
-          event.target.value = "";
+        event.target.value = "";
 
-        }
-      );
-
-
-    /* =====================================
-       RENDER PHOTOS
-    ===================================== */
-
-    function renderPhotos() {
-
-      const grid =
-        document.getElementById(
-          "photoGrid"
-        );
+    });
 
 
-      const empty =
-        document.getElementById(
-          "emptyGallery"
-        );
+/* =========================
+   RENDER PHOTOS
+========================= */
+
+function renderPhotos() {
+
+    const grid =
+        document.getElementById("photoGrid");
+
+    const empty =
+        document.getElementById("emptyGallery");
 
 
-      const count =
-        document.getElementById(
-          "photoCount"
-        );
+    grid.innerHTML = "";
 
 
-      grid.innerHTML = "";
-
-
-      count.innerText =
+    document.getElementById("photoCount").textContent =
         photos.length +
-        (
-          photos.length === 1
-            ? " photo"
-            : " photos"
-        );
+        (photos.length === 1 ? " photo" : " photos");
 
 
-      if (
-        photos.length === 0
-      ) {
+    if (photos.length === 0) {
 
-        empty.style.display =
-          "block";
+        empty.style.display = "block";
 
         return;
 
-      }
-
-
-      empty.style.display =
-        "none";
-
-
-      photos.forEach(photo => {
-
-        const item =
-          document.createElement(
-            "div"
-          );
-
-
-        item.className =
-          "photo-item";
-
-
-        const img =
-          document.createElement(
-            "img"
-          );
-
-
-        img.src =
-          photo.url;
-
-
-        img.alt =
-          "Gallery photo";
-
-
-        item.appendChild(
-          img
-        );
-
-
-        item.addEventListener(
-          "click",
-          () =>
-            openLightbox(
-              photo.url
-            )
-        );
-
-
-        grid.appendChild(
-          item
-        );
-
-      });
-
     }
 
 
-    /* =====================================
-       LIGHTBOX
-    ===================================== */
+    empty.style.display = "none";
 
-    function openLightbox(url) {
 
-      document
-        .getElementById(
-          "lightboxImage"
-        )
+    photos.forEach((photo, index) => {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className = "photo-card";
+
+
+        card.innerHTML = `
+
+            <img
+                src="${photo.url}"
+                alt="Gallery photo ${index + 1}"
+            >
+
+            <div class="photo-overlay">
+                Photo ${index + 1}
+            </div>
+
+        `;
+
+
+        card.addEventListener("click", () => {
+
+            openLightbox(photo.url);
+
+        });
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+function openLightbox(url) {
+
+    document
+        .getElementById("lightboxImage")
         .src = url;
 
 
-      document
-        .getElementById(
-          "lightbox"
-        )
-        .classList.add(
-          "active"
-        );
+    document
+        .getElementById("lightbox")
+        .classList.add("active");
 
-    }
+}
 
-
-    function closeLightbox() {
-
-      document
-        .getElementById(
-          "lightbox"
-        )
-        .classList.remove(
-          "active"
-        );
-
-    }
-
-
-    /* =====================================
-       ESC KEY
-    ===================================== */
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          closeLightbox();
-
-          closeCreateModal();
-
-        }
-
-      }
-    );
-
-
-    /* =====================================
-       CLOSE MODAL OUTSIDE
-    ===================================== */
+function closeLightbox() {
 
     document
-      .getElementById(
-        "createModal"
-      )
-      .addEventListener(
-        "click",
-        function(event) {
+        .getElementById("lightbox")
+        .classList.remove("active");
 
-          if (
-            event.target === this
-          ) {
+}
 
-            closeCreateModal();
 
-          }
+/* =========================
+   SHARE
+========================= */
 
-        }
-      );
+function shareGallery() {
 
-  </script>
+    if (!currentGallery) {
+
+        return;
+
+    }
+
+
+    const link =
+        window.location.href.split("#")[0]
+        + "#gallery-"
+        + currentGallery.id;
+
+
+    if (navigator.share) {
+
+        navigator.share({
+
+            title: currentGallery.name,
+
+            text:
+                "Join my Open Gallery: "
+                + currentGallery.name,
+
+            url: link
+
+        });
+
+    } else {
+
+        navigator.clipboard
+            .writeText(link)
+            .then(() => {
+
+                alert(
+                    "Gallery link copied!\n\n"
+                    + link
+                );
+
+            });
+
+    }
+
+}
+
+
+/* =========================
+   COPY LINK
+========================= */
+
+function copyGalleryLink() {
+
+    const link =
+        document
+        .getElementById("galleryLink")
+        .value;
+
+
+    navigator.clipboard
+        .writeText(link)
+        .then(() => {
+
+            alert("Gallery link copied!");
+
+        })
+        .catch(() => {
+
+            alert(link);
+
+        });
+
+}
+
+
+/* =========================
+   QR CODE
+========================= */
+
+function showQRCode() {
+
+    if (!currentGallery) {
+
+        return;
+
+    }
+
+
+    const link =
+        window.location.href.split("#")[0]
+        + "#gallery-"
+        + currentGallery.id;
+
+
+    const qrUrl =
+        "https://api.qrserver.com/v1/create-qr-code/"
+        + "?size=500x500"
+        + "&data="
+        + encodeURIComponent(link);
+
+
+    document
+        .getElementById("qrImage")
+        .src = qrUrl;
+
+
+    document
+        .getElementById("qrUrl")
+        .textContent = link;
+
+
+    document
+        .getElementById("qrModal")
+        .classList.add("active");
+
+}
+
+
+function closeQRCode() {
+
+    document
+        .getElementById("qrModal")
+        .classList.remove("active");
+
+}
+
+
+/* =========================
+   SHARE FEATURE
+========================= */
+
+function shareFeature() {
+
+    if (!currentGallery) {
+
+        alert(
+            "Create a gallery first, then you can share it."
+        );
+
+        openCreateModal();
+
+        return;
+
+    }
+
+
+    showGallery();
+
+    shareGallery();
+
+}
+
+
+/* =========================
+   COLLECT FEATURE
+========================= */
+
+function collectFeature() {
+
+    if (!currentGallery) {
+
+        alert(
+            "Create a gallery first, then you can add photos."
+        );
+
+        openCreateModal();
+
+        return;
+
+    }
+
+
+    showGallery();
+
+
+    setTimeout(() => {
+
+        openPhotoPicker();
+
+    }, 300);
+
+}
+
+
+/* =========================
+   JOIN GALLERY
+========================= */
+
+function joinGallery() {
+
+    const id =
+        prompt(
+            "Enter the Gallery ID"
+        );
+
+
+    if (!id) {
+
+        return;
+
+    }
+
+
+    alert(
+        "Gallery joining will be connected to Supabase in the next stage.\n\n"
+        + "Gallery ID: "
+        + id.toUpperCase()
+    );
+
+}
+
+
+/* =========================
+   CLOSE MODALS ON BACKGROUND
+========================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener("click", function(event) {
+
+            if (event.target === modal) {
+
+                modal.classList.remove("active");
+
+            }
+
+        });
+
+    });
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        document
+            .querySelectorAll(".modal")
+            .forEach(modal => {
+
+                modal.classList.remove("active");
+
+            });
+
+
+        closeLightbox();
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
