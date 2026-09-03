@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Open Gallery</title>
 
@@ -76,6 +82,7 @@ body::after {
     padding: 18px 6%;
 
     background: rgba(15, 23, 42, 0.65);
+
     backdrop-filter: blur(18px);
 
     border-bottom: 1px solid rgba(255,255,255,0.12);
@@ -84,6 +91,7 @@ body::after {
 .logo {
     border: none;
     background: none;
+
     color: white;
 
     font-size: 22px;
@@ -94,13 +102,16 @@ body::after {
 
 .nav-create {
     border: none;
+
     background: white;
     color: #2563eb;
 
     padding: 11px 18px;
+
     border-radius: 12px;
 
     font-weight: 700;
+
     cursor: pointer;
 
     transition: 0.2s;
@@ -117,6 +128,7 @@ body::after {
 
 .hero {
     position: relative;
+
     min-height: 760px;
 
     display: flex;
@@ -130,7 +142,9 @@ body::after {
 
 .hero-content {
     width: min(900px, 100%);
+
     text-align: center;
+
     position: relative;
     z-index: 5;
 }
@@ -139,11 +153,13 @@ body::after {
     display: inline-block;
 
     padding: 9px 15px;
+
     margin-bottom: 25px;
 
     border-radius: 999px;
 
     background: rgba(255,255,255,0.14);
+
     border: 1px solid rgba(255,255,255,0.22);
 
     backdrop-filter: blur(12px);
@@ -154,6 +170,7 @@ body::after {
 
 .hero h1 {
     font-size: clamp(48px, 8vw, 86px);
+
     line-height: 0.98;
 
     letter-spacing: -4px;
@@ -167,9 +184,11 @@ body::after {
 
 .hero p {
     max-width: 680px;
+
     margin: auto;
 
     font-size: 19px;
+
     line-height: 1.7;
 
     color: rgba(255,255,255,0.84);
@@ -177,7 +196,9 @@ body::after {
 
 .hero-buttons {
     display: flex;
+
     justify-content: center;
+
     gap: 14px;
 
     margin-top: 34px;
@@ -188,11 +209,13 @@ body::after {
 .primary-btn,
 .secondary-btn {
     border: none;
+
     padding: 15px 23px;
 
     border-radius: 14px;
 
     font-size: 16px;
+
     font-weight: 700;
 
     cursor: pointer;
@@ -202,11 +225,13 @@ body::after {
 
 .primary-btn {
     background: #ffffff;
+
     color: #2563eb;
 }
 
 .secondary-btn {
     background: rgba(255,255,255,0.13);
+
     color: white;
 
     border: 1px solid rgba(255,255,255,0.22);
@@ -233,6 +258,7 @@ body::after {
     border-radius: 18px;
 
     background: rgba(255,255,255,0.13);
+
     border: 1px solid rgba(255,255,255,0.2);
 
     backdrop-filter: blur(12px);
@@ -249,49 +275,60 @@ body::after {
     border-radius: 12px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     font-size: 48px;
 
-    background: linear-gradient(
-        135deg,
-        #60a5fa,
-        #8b5cf6,
-        #ec4899
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #8b5cf6,
+            #ec4899
+        );
 }
 
 .memory p {
     margin-top: 9px;
+
     font-size: 12px;
+
     font-weight: 700;
 }
 
 .memory-1 {
     left: 7%;
     top: 18%;
+
     transform: rotate(-9deg);
 }
 
 .memory-2 {
     right: 7%;
     top: 22%;
+
     transform: rotate(9deg);
+
     animation-delay: 1s;
 }
 
 .memory-3 {
     left: 12%;
     bottom: 12%;
+
     transform: rotate(7deg);
+
     animation-delay: 2s;
 }
 
 .memory-4 {
     right: 12%;
     bottom: 10%;
+
     transform: rotate(-7deg);
+
     animation-delay: 3s;
 }
 
@@ -304,6 +341,7 @@ body::after {
     50% {
         margin-top: -14px;
     }
+
 }
 
 
@@ -313,10 +351,13 @@ body::after {
 
 .features {
     width: min(1150px, 90%);
+
     margin: 0 auto 100px;
 
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 20px;
 }
 
@@ -326,6 +367,7 @@ body::after {
     border-radius: 24px;
 
     background: rgba(255,255,255,0.10);
+
     border: 1px solid rgba(255,255,255,0.16);
 
     backdrop-filter: blur(18px);
@@ -335,6 +377,7 @@ body::after {
 
 .feature-card:hover {
     transform: translateY(-8px);
+
     background: rgba(255,255,255,0.15);
 }
 
@@ -343,16 +386,18 @@ body::after {
     height: 68px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     border-radius: 20px;
 
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
     margin-bottom: 20px;
 }
@@ -364,11 +409,13 @@ body::after {
 
 .feature-card h3 {
     font-size: 23px;
+
     margin-bottom: 10px;
 }
 
 .feature-card p {
     color: rgba(255,255,255,0.72);
+
     line-height: 1.6;
 }
 
@@ -378,6 +425,7 @@ body::after {
     margin-top: 18px;
 
     border: none;
+
     background: none;
 
     color: #93c5fd;
@@ -394,6 +442,7 @@ body::after {
 
 .how-section {
     width: min(1100px, 90%);
+
     margin: 0 auto 120px;
 
     text-align: center;
@@ -401,17 +450,21 @@ body::after {
 
 .section-title {
     font-size: 42px;
+
     margin-bottom: 15px;
 }
 
 .section-subtitle {
     color: rgba(255,255,255,0.7);
+
     margin-bottom: 45px;
 }
 
 .steps {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 20px;
 }
 
@@ -421,6 +474,7 @@ body::after {
     border-radius: 22px;
 
     background: rgba(255,255,255,0.09);
+
     border: 1px solid rgba(255,255,255,0.14);
 
     backdrop-filter: blur(15px);
@@ -433,12 +487,14 @@ body::after {
     margin: 0 auto 18px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     border-radius: 50%;
 
     background: #ffffff;
+
     color: #2563eb;
 
     font-weight: 800;
@@ -450,6 +506,7 @@ body::after {
 
 .step p {
     color: rgba(255,255,255,0.7);
+
     line-height: 1.6;
 }
 
@@ -460,17 +517,20 @@ body::after {
 
 .modal {
     position: fixed;
+
     inset: 0;
 
     z-index: 500;
 
     display: none;
+
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
     background: rgba(0,0,0,0.65);
+
     backdrop-filter: blur(10px);
 }
 
@@ -481,11 +541,16 @@ body::after {
 .modal-box {
     width: min(500px, 100%);
 
+    max-height: 92vh;
+
+    overflow-y: auto;
+
     padding: 30px;
 
     border-radius: 25px;
 
     background: #ffffff;
+
     color: #111827;
 
     box-shadow: 0 30px 100px rgba(0,0,0,0.4);
@@ -493,13 +558,20 @@ body::after {
 
 .modal-box h2 {
     font-size: 30px;
+
     margin-bottom: 8px;
 }
 
 .modal-box > p {
     color: #6b7280;
+
     margin-bottom: 25px;
 }
+
+
+/* =========================
+   FORM
+========================= */
 
 .form-group {
     margin-bottom: 18px;
@@ -507,9 +579,11 @@ body::after {
 
 .form-group label {
     display: block;
+
     margin-bottom: 7px;
 
     font-size: 14px;
+
     font-weight: 700;
 }
 
@@ -520,9 +594,11 @@ body::after {
     padding: 13px 14px;
 
     border: 1px solid #d1d5db;
+
     border-radius: 12px;
 
     font-size: 15px;
+
     outline: none;
 }
 
@@ -533,12 +609,20 @@ body::after {
 
 .form-group textarea {
     min-height: 90px;
+
     resize: vertical;
 }
 
+
+/* =========================
+   EMOJI
+========================= */
+
 .emoji-picker {
     display: flex;
+
     gap: 8px;
+
     flex-wrap: wrap;
 }
 
@@ -547,6 +631,7 @@ body::after {
     height: 42px;
 
     border: 1px solid #d1d5db;
+
     background: white;
 
     border-radius: 10px;
@@ -558,12 +643,230 @@ body::after {
 
 .emoji-option.selected {
     border: 2px solid #2563eb;
+
     background: #eff6ff;
 }
 
+
+/* =========================
+   PRIVACY BOX
+========================= */
+
+.privacy-box {
+    margin-top: 22px;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+}
+
+.privacy-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.privacy-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.privacy-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #dbeafe;
+
+    font-size: 19px;
+}
+
+.privacy-title strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+.privacy-title small {
+    color: #64748b;
+
+    display: block;
+
+    margin-top: 3px;
+}
+
+
+/* =========================
+   TOGGLE
+========================= */
+
+.toggle {
+    position: relative;
+
+    width: 52px;
+    height: 30px;
+
+    flex-shrink: 0;
+}
+
+.toggle input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    border-radius: 30px;
+
+    background: #cbd5e1;
+
+    transition: 0.25s;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    left: 4px;
+    top: 4px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: 0.25s;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.toggle input:checked + .slider {
+    background: #2563eb;
+}
+
+.toggle input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+
+/* =========================
+   PRIVATE CODE
+========================= */
+
+.private-settings {
+    display: none;
+
+    margin-top: 16px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+.private-settings.active {
+    display: block;
+}
+
+.private-settings label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #334155;
+}
+
+.private-code {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    letter-spacing: 5px;
+
+    font-size: 18px;
+
+    text-align: center;
+
+    outline: none;
+}
+
+.private-code:focus {
+    border-color: #2563eb;
+}
+
+.privacy-note {
+    margin-top: 10px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color: #64748b;
+}
+
+
+/* =========================
+   PRIVACY INFO
+========================= */
+
+.privacy-info {
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 13px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MODAL BUTTONS
+========================= */
+
 .modal-buttons {
     display: flex;
+
     gap: 10px;
+
     margin-top: 25px;
 }
 
@@ -587,6 +890,7 @@ body::after {
     margin: 0 auto 20px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -599,6 +903,7 @@ body::after {
 
 .gallery-link-box {
     display: flex;
+
     gap: 8px;
 
     margin: 22px 0;
@@ -610,6 +915,7 @@ body::after {
     padding: 12px;
 
     border: 1px solid #d1d5db;
+
     border-radius: 10px;
 
     background: #f9fafb;
@@ -619,9 +925,11 @@ body::after {
     padding: 12px 15px;
 
     border: none;
+
     border-radius: 10px;
 
     background: #2563eb;
+
     color: white;
 
     font-weight: 700;
@@ -629,9 +937,25 @@ body::after {
     cursor: pointer;
 }
 
+.success-privacy {
+    margin: 15px 0;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
 
 /* =========================
-   GALLERY PAGE
+   GALLERY
 ========================= */
 
 .gallery-page {
@@ -648,7 +972,9 @@ body::after {
     margin: 50px auto 30px;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     gap: 20px;
@@ -656,7 +982,9 @@ body::after {
 
 .gallery-info {
     display: flex;
+
     align-items: center;
+
     gap: 18px;
 }
 
@@ -665,12 +993,14 @@ body::after {
     height: 75px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     border-radius: 20px;
 
     background: rgba(255,255,255,0.13);
+
     border: 1px solid rgba(255,255,255,0.2);
 
     font-size: 38px;
@@ -678,6 +1008,7 @@ body::after {
 
 .gallery-info h1 {
     font-size: clamp(30px, 5vw, 48px);
+
     margin-bottom: 5px;
 }
 
@@ -687,13 +1018,51 @@ body::after {
 
 .gallery-id {
     font-size: 12px;
+
     color: rgba(255,255,255,0.55);
+
     margin-top: 6px;
 }
 
+
+/* =========================
+   PRIVACY BADGE
+========================= */
+
+.gallery-privacy {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.12);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    color: #dbeafe;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   GALLERY ACTIONS
+========================= */
+
 .gallery-actions {
     display: flex;
+
     gap: 10px;
+
     flex-wrap: wrap;
 }
 
@@ -705,6 +1074,7 @@ body::after {
     border-radius: 12px;
 
     background: rgba(255,255,255,0.13);
+
     color: white;
 
     border: 1px solid rgba(255,255,255,0.18);
@@ -718,35 +1088,42 @@ body::after {
 
 .gallery-btn:hover {
     transform: translateY(-2px);
+
     background: rgba(255,255,255,0.2);
 }
 
 .gallery-btn.primary {
     background: white;
+
     color: #2563eb;
 }
 
 
 /* =========================
-   GALLERY TOOLBAR
+   TOOLBAR
 ========================= */
 
 .gallery-toolbar {
     width: min(1100px, 90%);
+
     margin: 0 auto 25px;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 }
 
 .photo-count {
     color: rgba(255,255,255,0.7);
+
     font-size: 14px;
 }
 
 .qr-button {
     border: none;
+
     background: none;
 
     color: #bfdbfe;
@@ -793,13 +1170,16 @@ body::after {
 
     from {
         opacity: 0;
+
         transform: scale(0.96);
     }
 
     to {
         opacity: 1;
+
         transform: scale(1);
     }
+
 }
 
 .photo-card img {
@@ -817,14 +1197,16 @@ body::after {
 
 .photo-overlay {
     position: absolute;
+
     inset: auto 0 0 0;
 
     padding: 25px 12px 12px;
 
-    background: linear-gradient(
-        transparent,
-        rgba(0,0,0,0.65)
-    );
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,0.65)
+        );
 
     opacity: 0;
 
@@ -852,6 +1234,7 @@ body::after {
     border-radius: 25px;
 
     background: rgba(255,255,255,0.09);
+
     border: 1px solid rgba(255,255,255,0.15);
 
     backdrop-filter: blur(15px);
@@ -859,6 +1242,7 @@ body::after {
 
 .empty-icon {
     font-size: 60px;
+
     margin-bottom: 20px;
 }
 
@@ -868,6 +1252,7 @@ body::after {
 
 .empty-gallery p {
     color: rgba(255,255,255,0.65);
+
     line-height: 1.6;
 
     margin-bottom: 25px;
@@ -914,6 +1299,7 @@ body::after {
 
 .lightbox {
     position: fixed;
+
     inset: 0;
 
     z-index: 1000;
@@ -951,6 +1337,7 @@ body::after {
     height: 45px;
 
     border: none;
+
     border-radius: 50%;
 
     background: rgba(255,255,255,0.15);
@@ -999,6 +1386,7 @@ footer {
 
     .gallery-header {
         flex-direction: column;
+
         align-items: flex-start;
     }
 
@@ -1009,6 +1397,7 @@ footer {
     .gallery-btn {
         flex: 1;
     }
+
 }
 
 @media (max-width: 600px) {
@@ -1039,6 +1428,7 @@ footer {
 
     .photo-grid {
         grid-template-columns: repeat(2, 1fr);
+
         gap: 9px;
     }
 
@@ -1049,6 +1439,7 @@ footer {
     .gallery-emoji {
         width: 55px;
         height: 55px;
+
         font-size: 28px;
     }
 
@@ -1063,9 +1454,15 @@ footer {
     .modal-box {
         padding: 23px;
     }
+
+    .privacy-header {
+        align-items: flex-start;
+    }
+
 }
 
 </style>
+
 </head>
 
 
@@ -1078,11 +1475,17 @@ footer {
 
 <nav class="navbar">
 
-    <button class="logo" onclick="goHome()">
+    <button
+        class="logo"
+        onclick="goHome()"
+    >
         📸 Open Gallery
     </button>
 
-    <button class="nav-create" onclick="openCreateModal()">
+    <button
+        class="nav-create"
+        onclick="openCreateModal()"
+    >
         + Create Gallery
     </button>
 
@@ -1098,24 +1501,56 @@ footer {
 
 <section class="hero">
 
+
     <div class="memory memory-1">
-        <div class="memory-photo">📸</div>
-        <p>Best day ever</p>
+
+        <div class="memory-photo">
+            📸
+        </div>
+
+        <p>
+            Best day ever
+        </p>
+
     </div>
+
 
     <div class="memory memory-2">
-        <div class="memory-photo">💍</div>
-        <p>Just married</p>
+
+        <div class="memory-photo">
+            💍
+        </div>
+
+        <p>
+            Just married
+        </p>
+
     </div>
+
 
     <div class="memory memory-3">
-        <div class="memory-photo">🎉</div>
-        <p>With the crew</p>
+
+        <div class="memory-photo">
+            🎉
+        </div>
+
+        <p>
+            With the crew
+        </p>
+
     </div>
 
+
     <div class="memory memory-4">
-        <div class="memory-photo">🌅</div>
-        <p>11:42 PM</p>
+
+        <div class="memory-photo">
+            🌅
+        </div>
+
+        <p>
+            11:42 PM
+        </p>
+
     </div>
 
 
@@ -1158,142 +1593,170 @@ footer {
 </section>
 
 
-<!-- FEATURES -->
+<!-- =========================
+     FEATURES
+========================= -->
 
 <section class="features">
 
 
-    <!-- CREATE -->
+<div class="feature-card">
 
-    <div class="feature-card">
+    <div class="icon">
 
-        <div class="icon">
-
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M12 3v18"/>
-                <path d="M3 12h18"/>
-                <path d="M5 5l2 2"/>
-                <path d="M17 17l2 2"/>
-            </svg>
-
-        </div>
-
-        <h3>Create</h3>
-
-        <p>
-            Start a beautiful shared gallery for your event.
-        </p>
-
-        <button
-            class="feature-action"
-            onclick="openCreateModal()"
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
         >
-            Create now →
-        </button>
+
+            <path d="M12 3v18"/>
+
+            <path d="M3 12h18"/>
+
+            <path d="M5 5l2 2"/>
+
+            <path d="M17 17l2 2"/>
+
+        </svg>
 
     </div>
 
+    <h3>
+        Create
+    </h3>
 
-    <!-- SHARE -->
+    <p>
+        Start a beautiful shared gallery for your event.
+    </p>
 
-    <div class="feature-card">
+    <button
+        class="feature-action"
+        onclick="openCreateModal()"
+    >
+        Create now →
+    </button>
 
-        <div class="icon">
+</div>
 
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <circle cx="18" cy="5" r="3"/>
-                <circle cx="6" cy="12" r="3"/>
-                <circle cx="18" cy="19" r="3"/>
 
-                <path d="M8.6 13.5l6.8 4"/>
-                <path d="M15.4 6.5l-6.8 4"/>
-            </svg>
+<div class="feature-card">
 
-        </div>
+    <div class="icon">
 
-        <h3>Share</h3>
-
-        <p>
-            Share one simple link or QR code with everyone.
-        </p>
-
-        <button
-            class="feature-action"
-            onclick="shareFeature()"
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
         >
-            Share gallery →
-        </button>
+
+            <circle
+                cx="18"
+                cy="5"
+                r="3"
+            />
+
+            <circle
+                cx="6"
+                cy="12"
+                r="3"
+            />
+
+            <circle
+                cx="18"
+                cy="19"
+                r="3"
+            />
+
+            <path d="M8.6 13.5l6.8 4"/>
+
+            <path d="M15.4 6.5l-6.8 4"/>
+
+        </svg>
 
     </div>
 
+    <h3>
+        Share
+    </h3>
 
-    <!-- COLLECT -->
+    <p>
+        Share one simple link or QR code with everyone.
+    </p>
 
-    <div class="feature-card">
+    <button
+        class="feature-action"
+        onclick="shareFeature()"
+    >
+        Share gallery →
+    </button>
 
-        <div class="icon">
+</div>
 
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <rect
-                    x="3"
-                    y="4"
-                    width="18"
-                    height="16"
-                    rx="2"
-                />
 
-                <circle
-                    cx="8.5"
-                    cy="9"
-                    r="1.5"
-                />
+<div class="feature-card">
 
-                <path d="M21 15l-5-5L5 20"/>
-            </svg>
+    <div class="icon">
 
-        </div>
-
-        <h3>Collect</h3>
-
-        <p>
-            Everyone adds their favorite photos without signing up.
-        </p>
-
-        <button
-            class="feature-action"
-            onclick="collectFeature()"
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
         >
-            Add photos →
-        </button>
+
+            <rect
+                x="3"
+                y="4"
+                width="18"
+                height="16"
+                rx="2"
+            />
+
+            <circle
+                cx="8.5"
+                cy="9"
+                r="1.5"
+            />
+
+            <path d="M21 15l-5-5L5 20"/>
+
+        </svg>
 
     </div>
+
+    <h3>
+        Collect
+    </h3>
+
+    <p>
+        Everyone adds their favorite photos without signing up.
+    </p>
+
+    <button
+        class="feature-action"
+        onclick="collectFeature()"
+    >
+        Add photos →
+    </button>
+
+</div>
 
 
 </section>
 
 
-<!-- HOW IT WORKS -->
+<!-- =========================
+     HOW IT WORKS
+========================= -->
 
 <section class="how-section">
 
@@ -1308,11 +1771,16 @@ footer {
 
     <div class="steps">
 
+
         <div class="step">
 
-            <div class="step-number">1</div>
+            <div class="step-number">
+                1
+            </div>
 
-            <h3>Create your gallery</h3>
+            <h3>
+                Create your gallery
+            </h3>
 
             <p>
                 Give your event a name and create your shared photo space.
@@ -1323,9 +1791,13 @@ footer {
 
         <div class="step">
 
-            <div class="step-number">2</div>
+            <div class="step-number">
+                2
+            </div>
 
-            <h3>Share the QR</h3>
+            <h3>
+                Share the QR
+            </h3>
 
             <p>
                 Put the QR code on tables, invitations, screens or signs.
@@ -1336,15 +1808,20 @@ footer {
 
         <div class="step">
 
-            <div class="step-number">3</div>
+            <div class="step-number">
+                3
+            </div>
 
-            <h3>Collect memories</h3>
+            <h3>
+                Collect memories
+            </h3>
 
             <p>
                 Everyone can add photos and see the memories together.
             </p>
 
         </div>
+
 
     </div>
 
@@ -1363,131 +1840,139 @@ footer {
 >
 
 
-    <div class="gallery-header">
-
-        <div class="gallery-info">
-
-            <div
-                class="gallery-emoji"
-                id="galleryEmoji"
-            >
-                🎉
-            </div>
-
-            <div>
-
-                <h1 id="galleryTitle">
-                    My Gallery
-                </h1>
-
-                <p id="galleryDescription">
-                    Everyone's favorite moments.
-                </p>
-
-                <div
-                    class="gallery-id"
-                    id="galleryId"
-                ></div>
-
-            </div>
-
-        </div>
+<div class="gallery-header">
 
 
-        <div class="gallery-actions">
-
-            <button
-                class="gallery-btn"
-                onclick="showQRCode()"
-            >
-                ▣ QR Code
-            </button>
-
-            <button
-                class="gallery-btn"
-                onclick="shareGallery()"
-            >
-                🔗 Share
-            </button>
-
-            <button
-                class="gallery-btn primary"
-                onclick="openPhotoPicker()"
-            >
-                + Add Photos
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="gallery-toolbar">
+    <div class="gallery-info">
 
         <div
-            class="photo-count"
-            id="photoCount"
+            class="gallery-emoji"
+            id="galleryEmoji"
         >
-            0 photos
+            🎉
         </div>
 
+
+        <div>
+
+            <h1 id="galleryTitle">
+                My Gallery
+            </h1>
+
+            <p id="galleryDescription">
+                Everyone's favorite moments.
+            </p>
+
+            <div
+                class="gallery-id"
+                id="galleryId"
+            ></div>
+
+            <div
+                class="gallery-privacy"
+                id="galleryPrivacy"
+            >
+                🌐 Open gallery
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="gallery-actions">
+
         <button
-            class="qr-button"
+            class="gallery-btn"
             onclick="showQRCode()"
         >
-            Invite people with QR →
+            ▣ QR Code
         </button>
-
-    </div>
-
-
-    <!-- EMPTY STATE -->
-
-    <div
-        class="empty-gallery"
-        id="emptyGallery"
-    >
-
-        <div class="empty-icon">
-            📸
-        </div>
-
-        <h2>
-            Your gallery is waiting
-        </h2>
-
-        <p>
-            Add the first photo and start collecting memories.
-            Then share the gallery with everyone at your event.
-        </p>
 
         <button
-            class="primary-btn"
+            class="gallery-btn"
+            onclick="shareGallery()"
+        >
+            🔗 Share
+        </button>
+
+        <button
+            class="gallery-btn primary"
             onclick="openPhotoPicker()"
         >
-            Add the first photo
+            + Add Photos
         </button>
 
     </div>
 
+</div>
 
-    <!-- PHOTO GRID -->
+
+<div class="gallery-toolbar">
 
     <div
-        class="photo-grid"
-        id="photoGrid"
-    ></div>
-
-
-    <!-- HIDDEN FILE INPUT -->
-
-    <input
-        type="file"
-        id="photoInput"
-        accept="image/*"
-        multiple
-        hidden
+        class="photo-count"
+        id="photoCount"
     >
+        0 photos
+    </div>
+
+    <button
+        class="qr-button"
+        onclick="showQRCode()"
+    >
+        Invite people with QR →
+    </button>
+
+</div>
+
+
+<!-- EMPTY STATE -->
+
+<div
+    class="empty-gallery"
+    id="emptyGallery"
+>
+
+    <div class="empty-icon">
+        📸
+    </div>
+
+    <h2>
+        Your gallery is waiting
+    </h2>
+
+    <p>
+        Add the first photo and start collecting memories.
+        Then share the gallery with everyone at your event.
+    </p>
+
+    <button
+        class="primary-btn"
+        onclick="openPhotoPicker()"
+    >
+        Add the first photo
+    </button>
+
+</div>
+
+
+<!-- PHOTO GRID -->
+
+<div
+    class="photo-grid"
+    id="photoGrid"
+></div>
+
+
+<input
+    type="file"
+    id="photoInput"
+    accept="image/*"
+    multiple
+    hidden
+>
+
 
 </section>
 
@@ -1501,128 +1986,234 @@ footer {
     id="createModal"
 >
 
-    <div class="modal-box">
-
-        <h2>
-            Create your gallery
-        </h2>
-
-        <p>
-            Give your event a name and start collecting memories.
-        </p>
+<div class="modal-box">
 
 
-        <div class="form-group">
+    <h2>
+        Create your gallery
+    </h2>
+
+    <p>
+        Give your event a name and choose who can access it.
+    </p>
+
+
+    <div class="form-group">
+
+        <label>
+            Event name
+        </label>
+
+        <input
+            id="eventName"
+            type="text"
+            placeholder="e.g. Sarah & John's Wedding"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Description
+        </label>
+
+        <textarea
+            id="eventDescription"
+            placeholder="e.g. Share your favorite moments from our wedding!"
+        ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Choose an icon
+        </label>
+
+        <div class="emoji-picker">
+
+
+            <button
+                class="emoji-option selected"
+                onclick="selectEmoji(this,'🎉')"
+            >
+                🎉
+            </button>
+
+
+            <button
+                class="emoji-option"
+                onclick="selectEmoji(this,'💍')"
+            >
+                💍
+            </button>
+
+
+            <button
+                class="emoji-option"
+                onclick="selectEmoji(this,'🎂')"
+            >
+                🎂
+            </button>
+
+
+            <button
+                class="emoji-option"
+                onclick="selectEmoji(this,'🎓')"
+            >
+                🎓
+            </button>
+
+
+            <button
+                class="emoji-option"
+                onclick="selectEmoji(this,'✈️')"
+            >
+                ✈️
+            </button>
+
+
+            <button
+                class="emoji-option"
+                onclick="selectEmoji(this,'🏖️')"
+            >
+                🏖️
+            </button>
+
+
+            <button
+                class="emoji-option"
+                onclick="selectEmoji(this,'❤️')"
+            >
+                ❤️
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PRIVACY
+    ========================= -->
+
+    <div class="privacy-box">
+
+
+        <div class="privacy-header">
+
+
+            <div class="privacy-title">
+
+                <div class="privacy-icon">
+                    🔒
+                </div>
+
+                <div>
+
+                    <strong>
+                        Private Gallery
+                    </strong>
+
+                    <small>
+                        Control who can access your photos
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="privateToggle"
+                    onchange="togglePrivateGallery()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+
+        </div>
+
+
+        <div
+            class="private-settings"
+            id="privateSettings"
+        >
 
             <label>
-                Event name
+                Create a 4-digit access code
             </label>
 
             <input
-                id="eventName"
+                id="privateCode"
+                class="private-code"
                 type="text"
-                placeholder="e.g. Sarah & John's Wedding"
+                inputmode="numeric"
+                maxlength="4"
+                placeholder="1234"
             >
 
-        </div>
+            <div class="privacy-note">
 
-
-        <div class="form-group">
-
-            <label>
-                Description
-            </label>
-
-            <textarea
-                id="eventDescription"
-                placeholder="e.g. Share your favorite moments from our wedding!"
-            ></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Choose an icon
-            </label>
-
-            <div class="emoji-picker">
-
-                <button
-                    class="emoji-option selected"
-                    onclick="selectEmoji(this,'🎉')"
-                >
-                    🎉
-                </button>
-
-                <button
-                    class="emoji-option"
-                    onclick="selectEmoji(this,'💍')"
-                >
-                    💍
-                </button>
-
-                <button
-                    class="emoji-option"
-                    onclick="selectEmoji(this,'🎂')"
-                >
-                    🎂
-                </button>
-
-                <button
-                    class="emoji-option"
-                    onclick="selectEmoji(this,'🎓')"
-                >
-                    🎓
-                </button>
-
-                <button
-                    class="emoji-option"
-                    onclick="selectEmoji(this,'✈️')"
-                >
-                    ✈️
-                </button>
-
-                <button
-                    class="emoji-option"
-                    onclick="selectEmoji(this,'🏖️')"
-                >
-                    🏖️
-                </button>
-
-                <button
-                    class="emoji-option"
-                    onclick="selectEmoji(this,'❤️')"
-                >
-                    ❤️
-                </button>
+                Guests will need this code along with the
+                gallery link or QR code.
 
             </div>
 
         </div>
 
 
-        <div class="modal-buttons">
+        <div class="privacy-info">
 
-            <button
-                class="secondary-btn"
-                style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;"
-                onclick="closeCreateModal()"
-            >
-                Cancel
-            </button>
+            <span>
+                🛡️
+            </span>
 
-            <button
-                class="primary-btn"
-                onclick="createGallery()"
-            >
-                Create Gallery
-            </button>
+            <span>
+                Private galleries are designed for invited guests.
+                We'll enforce this protection through Supabase when
+                we connect the backend.
+            </span>
 
         </div>
 
+
     </div>
+
+
+    <div class="modal-buttons">
+
+
+        <button
+            class="secondary-btn"
+            style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;"
+            onclick="closeCreateModal()"
+        >
+            Cancel
+        </button>
+
+
+        <button
+            class="primary-btn"
+            onclick="createGallery()"
+        >
+            Create Gallery
+        </button>
+
+
+    </div>
+
+
+</div>
 
 </div>
 
@@ -1636,44 +2227,59 @@ footer {
     id="successModal"
 >
 
-    <div class="modal-box success-box">
-
-        <div class="success-icon">
-            ✓
-        </div>
-
-        <h2>
-            Gallery created!
-        </h2>
-
-        <p>
-            Your gallery is ready. Share this link with your guests.
-        </p>
+<div class="modal-box success-box">
 
 
-        <div class="gallery-link-box">
+    <div class="success-icon">
+        ✓
+    </div>
 
-            <input
-                id="galleryLink"
-                readonly
-            >
 
-            <button onclick="copyGalleryLink()">
-                Copy
-            </button>
+    <h2>
+        Gallery created!
+    </h2>
 
-        </div>
+
+    <p>
+        Your gallery is ready.
+    </p>
+
+
+    <div
+        class="success-privacy"
+        id="successPrivacy"
+    ></div>
+
+
+    <div class="gallery-link-box">
+
+
+        <input
+            id="galleryLink"
+            readonly
+        >
 
 
         <button
-            class="primary-btn"
-            style="width:100%;"
-            onclick="openCreatedGallery()"
+            onclick="copyGalleryLink()"
         >
-            Open Gallery
+            Copy
         </button>
 
+
     </div>
+
+
+    <button
+        class="primary-btn"
+        style="width:100%;"
+        onclick="openCreatedGallery()"
+    >
+        Open Gallery
+    </button>
+
+
+</div>
 
 </div>
 
@@ -1687,50 +2293,62 @@ footer {
     id="qrModal"
 >
 
-    <div class="modal-box qr-container">
-
-        <h2>
-            Scan to join
-        </h2>
-
-        <p>
-            Guests can scan this QR code to open your gallery.
-        </p>
+<div class="modal-box qr-container">
 
 
-        <img
-            id="qrImage"
-            src=""
-            alt="Gallery QR Code"
+    <h2>
+        Scan to join
+    </h2>
+
+
+    <p id="qrDescription">
+        Guests can scan this QR code to open your gallery.
+    </p>
+
+
+    <img
+        id="qrImage"
+        src=""
+        alt="Gallery QR Code"
+    >
+
+
+    <div
+        class="qr-url"
+        id="qrUrl"
+    ></div>
+
+
+    <div
+        id="qrPrivacyMessage"
+        class="success-privacy"
+    ></div>
+
+
+    <div class="modal-buttons">
+
+
+        <button
+            class="secondary-btn"
+            style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;"
+            onclick="closeQRCode()"
         >
+            Close
+        </button>
 
 
-        <div
-            class="qr-url"
-            id="qrUrl"
-        ></div>
+        <button
+            class="primary-btn"
+            onclick="copyGalleryLink()"
+        >
+            Copy Link
+        </button>
 
-
-        <div class="modal-buttons">
-
-            <button
-                class="secondary-btn"
-                style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;"
-                onclick="closeQRCode()"
-            >
-                Close
-            </button>
-
-            <button
-                class="primary-btn"
-                onclick="copyGalleryLink()"
-            >
-                Copy Link
-            </button>
-
-        </div>
 
     </div>
+
+
+</div>
 
 </div>
 
@@ -1802,6 +2420,7 @@ function goHome() {
         top: 0,
         behavior: "smooth"
     });
+
 }
 
 
@@ -1816,6 +2435,7 @@ function openCreateModal() {
         .classList.add("active");
 
 }
+
 
 function closeCreateModal() {
 
@@ -1843,6 +2463,33 @@ function selectEmoji(button, emoji) {
         });
 
     button.classList.add("selected");
+
+}
+
+
+/* =========================
+   PRIVACY TOGGLE
+========================= */
+
+function togglePrivateGallery() {
+
+    const toggle =
+        document.getElementById("privateToggle");
+
+    const settings =
+        document.getElementById("privateSettings");
+
+
+    if (toggle.checked) {
+
+        settings.classList.add("active");
+
+    } else {
+
+        settings.classList.remove("active");
+
+    }
+
 }
 
 
@@ -1858,12 +2505,28 @@ function createGallery() {
         .value
         .trim();
 
+
     const description =
         document
         .getElementById("eventDescription")
         .value
         .trim();
 
+
+    const isPrivate =
+        document
+        .getElementById("privateToggle")
+        .checked;
+
+
+    const privateCode =
+        document
+        .getElementById("privateCode")
+        .value
+        .trim();
+
+
+    /* EVENT NAME */
 
     if (!name) {
 
@@ -1874,12 +2537,33 @@ function createGallery() {
     }
 
 
+    /* PRIVATE CODE */
+
+    if (isPrivate) {
+
+        if (!/^\d{4}$/.test(privateCode)) {
+
+            alert(
+                "Please enter a 4-digit access code for your private gallery."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* GALLERY ID */
+
     const galleryId =
         Math.random()
         .toString(36)
         .substring(2, 8)
         .toUpperCase();
 
+
+    /* SAVE GALLERY */
 
     currentGallery = {
 
@@ -1891,7 +2575,14 @@ function createGallery() {
             description ||
             "Everyone's favorite moments.",
 
-        emoji: selectedEmoji
+        emoji: selectedEmoji,
+
+        isPrivate: isPrivate,
+
+        accessCode:
+            isPrivate
+                ? privateCode
+                : null
 
     };
 
@@ -1899,13 +2590,39 @@ function createGallery() {
     photos = [];
 
 
+    /* LINK */
+
     const link =
         window.location.href.split("#")[0]
         + "#gallery-"
         + galleryId;
 
 
-    document.getElementById("galleryLink").value = link;
+    document
+        .getElementById("galleryLink")
+        .value = link;
+
+
+    /* SUCCESS PRIVACY MESSAGE */
+
+    const successPrivacy =
+        document.getElementById("successPrivacy");
+
+
+    if (isPrivate) {
+
+        successPrivacy.innerHTML =
+            "🔒 <strong>Private gallery</strong><br>" +
+            "Guests will need the gallery link and your " +
+            "4-digit access code.";
+
+    } else {
+
+        successPrivacy.innerHTML =
+            "🌐 <strong>Open gallery</strong><br>" +
+            "Anyone with the gallery link or QR code can access it.";
+
+    }
 
 
     closeCreateModal();
@@ -1927,6 +2644,7 @@ function openCreatedGallery() {
     document
         .getElementById("successModal")
         .classList.remove("active");
+
 
     showGallery();
 
@@ -1969,6 +2687,23 @@ function showGallery() {
         "Gallery ID: " + currentGallery.id;
 
 
+    const privacy =
+        document.getElementById("galleryPrivacy");
+
+
+    if (currentGallery.isPrivate) {
+
+        privacy.innerHTML =
+            "🔒 Private gallery";
+
+    } else {
+
+        privacy.innerHTML =
+            "🌐 Open gallery";
+
+    }
+
+
     renderPhotos();
 
 
@@ -2008,41 +2743,45 @@ function openPhotoPicker() {
 
 document
     .getElementById("photoInput")
-    .addEventListener("change", function(event) {
+    .addEventListener(
+        "change",
+        function(event) {
 
-        const files = Array.from(event.target.files);
-
-
-        files.forEach(file => {
-
-            if (!file.type.startsWith("image/")) {
-
-                return;
-
-            }
+            const files =
+                Array.from(event.target.files);
 
 
-            const imageUrl =
-                URL.createObjectURL(file);
+            files.forEach(file => {
+
+                if (!file.type.startsWith("image/")) {
+
+                    return;
+
+                }
 
 
-            photos.push({
+                const imageUrl =
+                    URL.createObjectURL(file);
 
-                url: imageUrl,
 
-                name: file.name
+                photos.push({
+
+                    url: imageUrl,
+
+                    name: file.name
+
+                });
 
             });
 
-        });
+
+            renderPhotos();
 
 
-        renderPhotos();
+            event.target.value = "";
 
-
-        event.target.value = "";
-
-    });
+        }
+    );
 
 
 /* =========================
@@ -2054,6 +2793,7 @@ function renderPhotos() {
     const grid =
         document.getElementById("photoGrid");
 
+
     const empty =
         document.getElementById("emptyGallery");
 
@@ -2063,7 +2803,9 @@ function renderPhotos() {
 
     document.getElementById("photoCount").textContent =
         photos.length +
-        (photos.length === 1 ? " photo" : " photos");
+        (photos.length === 1
+            ? " photo"
+            : " photos");
 
 
     if (photos.length === 0) {
@@ -2101,11 +2843,14 @@ function renderPhotos() {
         `;
 
 
-        card.addEventListener("click", () => {
+        card.addEventListener(
+            "click",
+            () => {
 
-            openLightbox(photo.url);
+                openLightbox(photo.url);
 
-        });
+            }
+        );
 
 
         grid.appendChild(card);
@@ -2131,6 +2876,7 @@ function openLightbox(url) {
         .classList.add("active");
 
 }
+
 
 function closeLightbox() {
 
@@ -2167,8 +2913,10 @@ function shareGallery() {
             title: currentGallery.name,
 
             text:
-                "Join my Open Gallery: "
-                + currentGallery.name,
+                currentGallery.isPrivate
+                    ? "Join this private Open Gallery."
+                    : "Join my Open Gallery: "
+                      + currentGallery.name,
 
             url: link
 
@@ -2254,6 +3002,25 @@ function showQRCode() {
     document
         .getElementById("qrUrl")
         .textContent = link;
+
+
+    const privacyMessage =
+        document.getElementById("qrPrivacyMessage");
+
+
+    if (currentGallery.isPrivate) {
+
+        privacyMessage.innerHTML =
+            "🔒 <strong>Private gallery</strong><br>" +
+            "Share the access code with invited guests separately.";
+
+    } else {
+
+        privacyMessage.innerHTML =
+            "🌐 <strong>Open gallery</strong><br>" +
+            "Anyone who scans this QR can access the gallery.";
+
+    }
 
 
     document
@@ -2349,7 +3116,8 @@ function joinGallery() {
 
 
     alert(
-        "Gallery joining will be connected to Supabase in the next stage.\n\n"
+        "Private gallery access will be connected "
+        + "to Supabase in the next stage.\n\n"
         + "Gallery ID: "
         + id.toUpperCase()
     );
@@ -2358,22 +3126,25 @@ function joinGallery() {
 
 
 /* =========================
-   CLOSE MODALS ON BACKGROUND
+   CLOSE MODALS
 ========================= */
 
 document
     .querySelectorAll(".modal")
     .forEach(modal => {
 
-        modal.addEventListener("click", function(event) {
+        modal.addEventListener(
+            "click",
+            function(event) {
 
-            if (event.target === modal) {
+                if (event.target === modal) {
 
-                modal.classList.remove("active");
+                    modal.classList.remove("active");
+
+                }
 
             }
-
-        });
+        );
 
     });
 
@@ -2382,26 +3153,30 @@ document
    ESCAPE KEY
 ========================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (event.key === "Escape") {
+        if (event.key === "Escape") {
 
-        document
-            .querySelectorAll(".modal")
-            .forEach(modal => {
+            document
+                .querySelectorAll(".modal")
+                .forEach(modal => {
 
-                modal.classList.remove("active");
+                    modal.classList.remove("active");
 
-            });
+                });
 
 
-        closeLightbox();
+            closeLightbox();
+
+        }
 
     }
-
-});
+);
 
 </script>
 
 </body>
+
 </html>
