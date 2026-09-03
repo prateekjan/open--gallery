@@ -34,9 +34,9 @@
       cursor: pointer;
     }
 
-    /* =========================
-       MAIN SCENIC BACKGROUND
-    ========================= */
+    /* =====================================
+       SCENIC BACKGROUND
+    ===================================== */
 
     body::before {
       content: "";
@@ -46,7 +46,7 @@
       background-image:
         linear-gradient(
           rgba(3, 15, 27, 0.38),
-          rgba(3, 15, 27, 0.55)
+          rgba(3, 15, 27, 0.58)
         ),
         url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=90");
 
@@ -65,17 +65,17 @@
       background:
         linear-gradient(
           180deg,
-          rgba(3, 15, 27, 0.2),
-          rgba(3, 15, 27, 0.55)
+          rgba(3, 15, 27, 0.18),
+          rgba(3, 15, 27, 0.58)
         );
 
       z-index: -1;
       pointer-events: none;
     }
 
-    /* =========================
+    /* =====================================
        NAVBAR
-    ========================= */
+    ===================================== */
 
     .navbar {
       position: sticky;
@@ -88,10 +88,11 @@
 
       padding: 18px 6%;
 
-      background: rgba(5, 20, 34, 0.45);
+      background: rgba(5, 20, 34, 0.48);
       backdrop-filter: blur(14px);
 
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom:
+        1px solid rgba(255,255,255,0.12);
     }
 
     .logo {
@@ -100,6 +101,8 @@
 
       font-size: 21px;
       font-weight: 800;
+
+      letter-spacing: -0.5px;
     }
 
     .nav-actions {
@@ -114,18 +117,20 @@
 
       border-radius: 12px;
 
-      background: linear-gradient(
-        135deg,
-        #2563eb,
-        #8b5cf6
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #8b5cf6
+        );
 
       color: white;
 
       font-weight: 800;
 
       box-shadow:
-        0 8px 25px rgba(37, 99, 235, 0.3);
+        0 8px 25px
+        rgba(37,99,235,0.3);
 
       transition: 0.2s;
     }
@@ -134,9 +139,9 @@
       transform: translateY(-2px);
     }
 
-    /* =========================
+    /* =====================================
        HERO
-    ========================= */
+    ===================================== */
 
     .hero {
       position: relative;
@@ -163,7 +168,7 @@
       background:
         radial-gradient(
           circle at center,
-          rgba(255, 255, 255, 0.08),
+          rgba(255,255,255,0.08),
           transparent 45%
         );
 
@@ -186,9 +191,11 @@
 
       border-radius: 999px;
 
-      background: rgba(255,255,255,0.14);
+      background:
+        rgba(255,255,255,0.14);
 
-      border: 1px solid rgba(255,255,255,0.25);
+      border:
+        1px solid rgba(255,255,255,0.25);
 
       backdrop-filter: blur(12px);
 
@@ -199,7 +206,8 @@
     }
 
     .hero h1 {
-      font-size: clamp(48px, 8vw, 88px);
+      font-size:
+        clamp(48px, 8vw, 88px);
 
       line-height: 0.98;
 
@@ -208,7 +216,8 @@
       margin-bottom: 25px;
 
       text-shadow:
-        0 5px 30px rgba(0,0,0,0.3);
+        0 5px 30px
+        rgba(0,0,0,0.3);
     }
 
     .hero h1 span {
@@ -229,14 +238,17 @@
     .hero-description {
       max-width: 680px;
 
-      margin: 0 auto 32px;
+      margin:
+        0 auto 32px;
 
-      color: rgba(255,255,255,0.9);
+      color:
+        rgba(255,255,255,0.9);
 
       font-size: 19px;
 
       text-shadow:
-        0 2px 15px rgba(0,0,0,0.4);
+        0 2px 15px
+        rgba(0,0,0,0.4);
     }
 
     .hero-buttons {
@@ -273,7 +285,8 @@
         );
 
       box-shadow:
-        0 12px 35px rgba(37,99,235,0.35);
+        0 12px 35px
+        rgba(37,99,235,0.35);
     }
 
     .primary-btn:hover,
@@ -284,9 +297,11 @@
     .secondary-btn {
       color: white;
 
-      background: rgba(255,255,255,0.12);
+      background:
+        rgba(255,255,255,0.12);
 
-      border: 1px solid rgba(255,255,255,0.4);
+      border:
+        1px solid rgba(255,255,255,0.4);
 
       backdrop-filter: blur(10px);
     }
@@ -294,16 +309,17 @@
     .trust-line {
       margin-top: 20px;
 
-      color: rgba(255,255,255,0.75);
+      color:
+        rgba(255,255,255,0.75);
 
       font-size: 13px;
 
       font-weight: 700;
     }
 
-    /* =========================
-       MEMORY CARDS
-    ========================= */
+    /* =====================================
+       FLOATING MEMORY CARDS
+    ===================================== */
 
     .memory-card {
       position: absolute;
@@ -318,7 +334,8 @@
       border-radius: 16px;
 
       box-shadow:
-        0 20px 45px rgba(0,0,0,0.3);
+        0 20px 45px
+        rgba(0,0,0,0.3);
 
       z-index: 5;
 
@@ -380,18 +397,22 @@
     .card-5 {
       left: 27%;
       top: 8%;
-      transform: rotate(-3deg) scale(0.8);
+      transform:
+        rotate(-3deg)
+        scale(0.8);
     }
 
     .card-6 {
       right: 27%;
       top: 8%;
-      transform: rotate(4deg) scale(0.8);
+      transform:
+        rotate(4deg)
+        scale(0.8);
     }
 
-    /* =========================
-       GLASS SECTIONS
-    ========================= */
+    /* =====================================
+       SECTION
+    ===================================== */
 
     .section {
       padding: 90px 6%;
@@ -407,12 +428,14 @@
       background:
         rgba(255,255,255,0.13);
 
-      border: 1px solid rgba(255,255,255,0.22);
+      border:
+        1px solid rgba(255,255,255,0.22);
 
       backdrop-filter: blur(15px);
 
       box-shadow:
-        0 25px 70px rgba(0,0,0,0.2);
+        0 25px 70px
+        rgba(0,0,0,0.2);
     }
 
     .section-heading {
@@ -424,7 +447,8 @@
     }
 
     .section-heading h2 {
-      font-size: clamp(32px,5vw,50px);
+      font-size:
+        clamp(32px,5vw,50px);
 
       letter-spacing: -2px;
 
@@ -432,77 +456,176 @@
     }
 
     .section-heading p {
-      color: rgba(255,255,255,0.8);
+      color:
+        rgba(255,255,255,0.8);
     }
 
-    /* =========================
-       FEATURES
-    ========================= */
+    /* =====================================
+       CREATE / SHARE / COLLECT
+    ===================================== */
 
     .features {
       display: grid;
 
       grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, 1fr);
 
       gap: 20px;
     }
 
     .feature-card {
-      padding: 30px;
+      position: relative;
+
+      padding: 34px 30px 30px;
 
       border-radius: 22px;
 
       background:
-        rgba(255,255,255,0.9);
+        rgba(255,255,255,0.94);
 
       color: #111827;
 
       box-shadow:
-        0 15px 40px rgba(0,0,0,0.12);
+        0 15px 40px
+        rgba(0,0,0,0.12);
 
-      transition: 0.25s;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+      overflow: hidden;
+    }
+
+    .feature-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      right: -55px;
+      bottom: -55px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(99,102,241,0.07);
     }
 
     .feature-card:hover {
-      transform: translateY(-7px);
+      transform:
+        translateY(-8px);
 
       box-shadow:
-        0 25px 50px rgba(0,0,0,0.2);
+        0 25px 55px
+        rgba(0,0,0,0.22);
     }
 
+    /* =====================================
+       NEW MODERN ICON
+    ===================================== */
+
     .feature-icon {
-      width: 50px;
-      height: 50px;
+      width: 68px;
+      height: 68px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border-radius: 15px;
+      border-radius: 20px;
 
-      background: #eff6ff;
+      margin-bottom: 22px;
 
-      font-size: 24px;
+      color: white;
 
-      margin-bottom: 18px;
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #8b5cf6
+        );
+
+      box-shadow:
+        0 12px 28px
+        rgba(79,70,229,0.3);
+
+      transition:
+        transform 0.25s ease;
+    }
+
+    .feature-card:hover
+    .feature-icon {
+      transform:
+        rotate(-4deg)
+        scale(1.06);
+    }
+
+    .feature-icon svg {
+      width: 32px;
+      height: 32px;
+
+      stroke: currentColor;
+
+      stroke-width: 1.8;
+
+      fill: none;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .feature-card h3 {
-      font-size: 21px;
+      font-size: 23px;
 
-      margin-bottom: 8px;
+      margin-bottom: 9px;
+
+      letter-spacing: -0.5px;
     }
 
     .feature-card p {
       color: #6b7280;
 
       font-size: 15px;
+
+      margin-bottom: 20px;
     }
 
-    /* =========================
+    .feature-action {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      border: none;
+
+      background: transparent;
+
+      color: #2563eb;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      padding: 0;
+    }
+
+    .feature-action span {
+      transition:
+        transform 0.2s ease;
+    }
+
+    .feature-card:hover
+    .feature-action span {
+      transform:
+        translateX(4px);
+    }
+
+    /* =====================================
        HOW IT WORKS
-    ========================= */
+    ===================================== */
 
     .steps {
       display: grid;
@@ -543,7 +666,8 @@
       font-weight: 800;
 
       box-shadow:
-        0 10px 25px rgba(37,99,235,0.3);
+        0 10px 25px
+        rgba(37,99,235,0.3);
     }
 
     .step h3 {
@@ -551,14 +675,15 @@
     }
 
     .step p {
-      color: rgba(255,255,255,0.75);
+      color:
+        rgba(255,255,255,0.75);
 
       font-size: 14px;
     }
 
-    /* =========================
+    /* =====================================
        MODAL
-    ========================= */
+    ===================================== */
 
     .modal-overlay {
       position: fixed;
@@ -597,15 +722,18 @@
       padding: 30px;
 
       box-shadow:
-        0 30px 80px rgba(0,0,0,0.35);
+        0 30px 80px
+        rgba(0,0,0,0.35);
 
-      animation: modalIn 0.25s ease;
+      animation:
+        modalIn 0.25s ease;
     }
 
     @keyframes modalIn {
 
       from {
         opacity: 0;
+
         transform:
           translateY(20px)
           scale(0.97);
@@ -613,6 +741,7 @@
 
       to {
         opacity: 1;
+
         transform:
           translateY(0)
           scale(1);
@@ -761,9 +890,9 @@
       font-weight: 800;
     }
 
-    /* =========================
-       SUCCESS SCREEN
-    ========================= */
+    /* =====================================
+       SUCCESS
+    ===================================== */
 
     .success-screen {
       display: none;
@@ -873,9 +1002,9 @@
       font-weight: 800;
     }
 
-    /* =========================
+    /* =====================================
        GALLERY PAGE
-    ========================= */
+    ===================================== */
 
     .gallery-page {
       display: none;
@@ -906,7 +1035,8 @@
 
       background: transparent;
 
-      color: rgba(255,255,255,0.8);
+      color:
+        rgba(255,255,255,0.8);
 
       font-weight: 700;
 
@@ -953,13 +1083,15 @@
     }
 
     .gallery-title-area h1 {
-      font-size: clamp(30px,5vw,48px);
+      font-size:
+        clamp(30px,5vw,48px);
 
       letter-spacing: -2px;
     }
 
     .gallery-title-area p {
-      color: rgba(255,255,255,0.7);
+      color:
+        rgba(255,255,255,0.7);
     }
 
     .gallery-actions {
@@ -1018,7 +1150,8 @@
 
       font-weight: 700;
 
-      color: rgba(255,255,255,0.8);
+      color:
+        rgba(255,255,255,0.8);
     }
 
     .upload-label {
@@ -1069,7 +1202,8 @@
       cursor: pointer;
 
       box-shadow:
-        0 10px 30px rgba(0,0,0,0.25);
+        0 10px 30px
+        rgba(0,0,0,0.25);
     }
 
     .photo-item img {
@@ -1094,7 +1228,8 @@
         rgba(255,255,255,0.12);
 
       border:
-        2px dashed rgba(255,255,255,0.25);
+        2px dashed
+        rgba(255,255,255,0.25);
 
       border-radius: 20px;
     }
@@ -1106,12 +1241,13 @@
     }
 
     .empty-gallery p {
-      color: rgba(255,255,255,0.7);
+      color:
+        rgba(255,255,255,0.7);
     }
 
-    /* =========================
+    /* =====================================
        LIGHTBOX
-    ========================= */
+    ===================================== */
 
     .lightbox {
       position: fixed;
@@ -1166,9 +1302,9 @@
       font-size: 24px;
     }
 
-    /* =========================
+    /* =====================================
        FOOTER
-    ========================= */
+    ===================================== */
 
     footer {
       padding: 45px 6%;
@@ -1189,9 +1325,9 @@
       font-size: 13px;
     }
 
-    /* =========================
+    /* =====================================
        MOBILE
-    ========================= */
+    ===================================== */
 
     @media (max-width: 800px) {
 
@@ -1292,6 +1428,10 @@
         padding: 25px;
       }
 
+      .section-heading {
+        margin-bottom: 30px;
+      }
+
       .modal {
         padding: 22px;
 
@@ -1330,16 +1470,22 @@
 
         justify-content: center;
       }
+
+      .feature-card {
+        padding: 28px 25px;
+      }
+
     }
 
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================
+  <!-- =====================================
        NAVBAR
-  ========================= -->
+  ===================================== -->
 
   <nav class="navbar">
 
@@ -1365,15 +1511,15 @@
   </nav>
 
 
-  <!-- =========================
-       HOME
-  ========================= -->
+  <!-- =====================================
+       HOME PAGE
+  ===================================== -->
 
   <main id="homePage">
 
     <section class="hero">
 
-      <!-- MEMORY CARD 1 -->
+      <!-- FLOATING MEMORY CARDS -->
 
       <div class="memory-card card-1">
 
@@ -1388,8 +1534,6 @@
       </div>
 
 
-      <!-- MEMORY CARD 2 -->
-
       <div class="memory-card card-2">
 
         <div class="memory-photo">
@@ -1402,8 +1546,6 @@
 
       </div>
 
-
-      <!-- MEMORY CARD 3 -->
 
       <div class="memory-card card-3">
 
@@ -1418,8 +1560,6 @@
       </div>
 
 
-      <!-- MEMORY CARD 4 -->
-
       <div class="memory-card card-4">
 
         <div class="memory-photo">
@@ -1433,8 +1573,6 @@
       </div>
 
 
-      <!-- MEMORY CARD 5 -->
-
       <div class="memory-card card-5">
 
         <div class="memory-photo">
@@ -1447,8 +1585,6 @@
 
       </div>
 
-
-      <!-- MEMORY CARD 6 -->
 
       <div class="memory-card card-6">
 
@@ -1525,9 +1661,9 @@
     </section>
 
 
-    <!-- =========================
-         FEATURES
-    ========================= -->
+    <!-- =====================================
+         CREATE / SHARE / COLLECT
+    ===================================== -->
 
     <section class="section">
 
@@ -1555,48 +1691,165 @@
           style="padding:0 45px 45px;"
         >
 
+          <!-- CREATE -->
+
           <div class="feature-card">
 
             <div class="feature-icon">
-              ✨
+
+              <!-- Sparkle / Create SVG -->
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3z"
+                />
+
+                <path
+                  d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16z"
+                />
+
+              </svg>
+
             </div>
+
 
             <h3>
               Create
             </h3>
 
             <p>
-              Start a gallery for your wedding,
-              birthday, trip, party, or any
-              special event.
+              Start a beautiful shared gallery
+              for your wedding, birthday,
+              trip, party, or special event.
             </p>
+
+
+            <button
+              class="feature-action"
+              onclick="openCreateModal()"
+            >
+
+              Create your gallery
+
+              <span>
+                →
+              </span>
+
+            </button>
 
           </div>
 
 
+          <!-- SHARE -->
+
           <div class="feature-card">
 
             <div class="feature-icon">
-              🔗
+
+              <!-- Share SVG -->
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <circle
+                  cx="18"
+                  cy="5"
+                  r="2.5"
+                />
+
+                <circle
+                  cx="6"
+                  cy="12"
+                  r="2.5"
+                />
+
+                <circle
+                  cx="18"
+                  cy="19"
+                  r="2.5"
+                />
+
+                <path
+                  d="M8.2 10.8l7.5-4.3"
+                />
+
+                <path
+                  d="M8.2 13.2l7.5 4.3"
+                />
+
+              </svg>
+
             </div>
+
 
             <h3>
               Share
             </h3>
 
             <p>
-              Give guests a simple link or QR
-              code they can open instantly.
+              Share one simple link or QR code
+              with your guests. No complicated
+              setup or app download.
             </p>
+
+
+            <button
+              class="feature-action"
+              onclick="shareFeature()"
+            >
+
+              See how sharing works
+
+              <span>
+                →
+              </span>
+
+            </button>
 
           </div>
 
 
+          <!-- COLLECT -->
+
           <div class="feature-card">
 
             <div class="feature-icon">
-              📸
+
+              <!-- Photo / Collect SVG -->
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <rect
+                  x="3"
+                  y="4"
+                  width="18"
+                  height="16"
+                  rx="3"
+                />
+
+                <circle
+                  cx="8.5"
+                  cy="9"
+                  r="1.5"
+                />
+
+                <path
+                  d="M21 16l-5-5-4 4-2-2-7 7"
+                />
+
+              </svg>
+
             </div>
+
 
             <h3>
               Collect
@@ -1604,9 +1857,23 @@
 
             <p>
               Everyone adds their favorite
-              photos so nobody misses
-              the memories.
+              photos so all the best moments
+              end up in one place.
             </p>
+
+
+            <button
+              class="feature-action"
+              onclick="collectFeature()"
+            >
+
+              Start collecting
+
+              <span>
+                →
+              </span>
+
+            </button>
 
           </div>
 
@@ -1617,9 +1884,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          HOW IT WORKS
-    ========================= -->
+    ===================================== -->
 
     <section class="section">
 
@@ -1700,9 +1967,9 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =====================================
        GALLERY PAGE
-  ========================= -->
+  ===================================== -->
 
   <section
     id="galleryPage"
@@ -1827,9 +2094,9 @@
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================
        CREATE MODAL
-  ========================= -->
+  ===================================== -->
 
   <div
     id="createModal"
@@ -1838,8 +2105,6 @@
 
     <div class="modal">
 
-
-      <!-- CREATE FORM -->
 
       <div id="createForm">
 
@@ -1987,7 +2252,7 @@
       </div>
 
 
-      <!-- SUCCESS SCREEN -->
+      <!-- SUCCESS -->
 
       <div
         id="successScreen"
@@ -2039,9 +2304,9 @@
   </div>
 
 
-  <!-- =========================
+  <!-- =====================================
        LIGHTBOX
-  ========================= -->
+  ===================================== -->
 
   <div
     id="lightbox"
@@ -2066,9 +2331,9 @@
   </div>
 
 
-  <!-- =========================
+  <!-- =====================================
        FOOTER
-  ========================= -->
+  ===================================== -->
 
   <footer>
 
@@ -2085,9 +2350,9 @@
   </footer>
 
 
-  <!-- =========================
+  <!-- =====================================
        JAVASCRIPT
-  ========================= -->
+  ===================================== -->
 
   <script>
 
@@ -2098,9 +2363,9 @@
     let photos = [];
 
 
-    /* =========================
+    /* =====================================
        CREATE MODAL
-    ========================= */
+    ===================================== */
 
     function openCreateModal() {
 
@@ -2132,9 +2397,9 @@
     }
 
 
-    /* =========================
-       EMOJI
-    ========================= */
+    /* =====================================
+       EMOJI SELECTOR
+    ===================================== */
 
     document
       .querySelectorAll(".emoji-option")
@@ -2142,7 +2407,7 @@
 
         button.addEventListener(
           "click",
-          function () {
+          function() {
 
             document
               .querySelectorAll(".emoji-option")
@@ -2169,9 +2434,9 @@
       });
 
 
-    /* =========================
+    /* =====================================
        CREATE GALLERY
-    ========================= */
+    ===================================== */
 
     function createGallery() {
 
@@ -2258,9 +2523,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        COPY LINK
-    ========================= */
+    ===================================== */
 
     function copyGalleryLink() {
 
@@ -2310,9 +2575,9 @@
     }
 
 
-    /* =========================
-       OPEN GALLERY
-    ========================= */
+    /* =====================================
+       OPEN CREATED GALLERY
+    ===================================== */
 
     function openCreatedGallery() {
 
@@ -2338,7 +2603,9 @@
 
       document
         .getElementById("galleryPage")
-        .classList.add("active");
+        .classList.add(
+          "active"
+        );
 
 
       document
@@ -2367,15 +2634,17 @@
     }
 
 
-    /* =========================
+    /* =====================================
        HOME
-    ========================= */
+    ===================================== */
 
     function showHome() {
 
       document
         .getElementById("galleryPage")
-        .classList.remove("active");
+        .classList.remove(
+          "active"
+        );
 
 
       document
@@ -2389,9 +2658,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        JOIN GALLERY
-    ========================= */
+    ===================================== */
 
     function joinGallery() {
 
@@ -2415,14 +2684,76 @@
     }
 
 
-    /* =========================
-       SHARE
-    ========================= */
+    /* =====================================
+       CREATE / SHARE / COLLECT ACTIONS
+    ===================================== */
+
+    function shareFeature() {
+
+      if (!currentGallery) {
+
+        alert(
+          "Create a gallery first.\n\n" +
+          "Once your gallery is created, " +
+          "you can share it using a simple link or QR code."
+        );
+
+        openCreateModal();
+
+        return;
+
+      }
+
+
+      showGalleryLink();
+
+    }
+
+
+    function collectFeature() {
+
+      if (!currentGallery) {
+
+        alert(
+          "Create a gallery first.\n\n" +
+          "Once your gallery is ready, " +
+          "everyone can add their photos."
+        );
+
+        openCreateModal();
+
+        return;
+
+      }
+
+
+      showGallery();
+
+      setTimeout(() => {
+
+        document
+          .getElementById("photoInput")
+          .click();
+
+      },300);
+
+    }
+
+
+    /* =====================================
+       SHARE GALLERY
+    ===================================== */
 
     function showGalleryLink() {
 
       if (!currentGallery) {
+
+        alert(
+          "Create a gallery first."
+        );
+
         return;
+
       }
 
 
@@ -2455,9 +2786,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        PHOTO UPLOAD
-    ========================= */
+    ===================================== */
 
     document
       .getElementById("photoInput")
@@ -2477,7 +2808,9 @@
               !file.type
                 .startsWith("image/")
             ) {
+
               return;
+
             }
 
 
@@ -2488,7 +2821,9 @@
 
 
             photos.push({
+
               url: imageUrl
+
             });
 
           });
@@ -2503,9 +2838,9 @@
       );
 
 
-    /* =========================
+    /* =====================================
        RENDER PHOTOS
-    ========================= */
+    ===================================== */
 
     function renderPhotos() {
 
@@ -2581,7 +2916,9 @@
           "Gallery photo";
 
 
-        item.appendChild(img);
+        item.appendChild(
+          img
+        );
 
 
         item.addEventListener(
@@ -2593,16 +2930,18 @@
         );
 
 
-        grid.appendChild(item);
+        grid.appendChild(
+          item
+        );
 
       });
 
     }
 
 
-    /* =========================
+    /* =====================================
        LIGHTBOX
-    ========================= */
+    ===================================== */
 
     function openLightbox(url) {
 
@@ -2637,9 +2976,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        ESC KEY
-    ========================= */
+    ===================================== */
 
     document.addEventListener(
       "keydown",
@@ -2659,9 +2998,9 @@
     );
 
 
-    /* =========================
-       CLICK OUTSIDE MODAL
-    ========================= */
+    /* =====================================
+       CLOSE MODAL OUTSIDE
+    ===================================== */
 
     document
       .getElementById(
