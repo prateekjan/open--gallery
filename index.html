@@ -14,9 +14,9 @@
 
     <style>
 
-        /* =========================
+        /* =====================================================
            RESET
-        ========================= */
+        ===================================================== */
 
         * {
             box-sizing: border-box;
@@ -37,6 +37,8 @@
 
             background: #f5f5f7;
             color: #1d1d1f;
+
+            overflow-x: hidden;
         }
 
         button,
@@ -50,9 +52,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            NAVIGATION
-        ========================= */
+        ===================================================== */
 
         nav {
             height: 70px;
@@ -79,6 +81,7 @@
         .logo {
             display: flex;
             align-items: center;
+
             gap: 8px;
 
             font-size: 20px;
@@ -117,14 +120,14 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            HERO
-        ========================= */
+        ===================================================== */
 
         .hero {
             position: relative;
 
-            min-height: 680px;
+            min-height: 730px;
 
             display: flex;
             align-items: center;
@@ -132,13 +135,13 @@
 
             text-align: center;
 
-            padding: 90px 20px 100px;
+            padding: 100px 20px 120px;
 
             background:
                 radial-gradient(
-                    circle at 50% 30%,
+                    circle at 50% 35%,
                     #ffffff 0%,
-                    #ffffff 55%,
+                    #ffffff 48%,
                     #f5f5f7 100%
                 );
 
@@ -148,15 +151,15 @@
         .hero-content {
             position: relative;
 
-            max-width: 950px;
+            max-width: 900px;
 
-            z-index: 5;
+            z-index: 10;
         }
 
 
-        /* =========================
+        /* =====================================================
            BADGE
-        ========================= */
+        ===================================================== */
 
         .badge {
             display: inline-flex;
@@ -181,9 +184,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            HERO TITLE
-        ========================= */
+        ===================================================== */
 
         .hero h1 {
             font-size:
@@ -193,7 +196,7 @@
 
             letter-spacing: -5px;
 
-            max-width: 950px;
+            max-width: 900px;
 
             margin: auto;
 
@@ -202,18 +205,18 @@
         }
 
         .hero h1 span {
-            display: inline-block;
+            display: block;
 
             color: #007aff;
         }
 
 
-        /* =========================
+        /* =====================================================
            HERO DESCRIPTION
-        ========================= */
+        ===================================================== */
 
         .hero p {
-            max-width: 640px;
+            max-width: 610px;
 
             margin: 30px auto 0;
 
@@ -228,9 +231,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            HERO BUTTONS
-        ========================= */
+        ===================================================== */
 
         .hero-actions {
             display: flex;
@@ -274,7 +277,7 @@
         .secondary-button {
             border: 1px solid #d9d9de;
 
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
 
             color: #1d1d1f;
 
@@ -297,9 +300,9 @@
         }
 
 
-        /* =========================
-           HERO TRUST TEXT
-        ========================= */
+        /* =====================================================
+           TRUST
+        ===================================================== */
 
         .hero-trust {
             margin-top: 19px;
@@ -317,63 +320,152 @@
         }
 
 
-        /* =========================
-           FLOATING MEMORY CARDS
-        ========================= */
+        /* =====================================================
+           MEMORY WALL
+        ===================================================== */
 
         .memory {
             position: absolute;
 
-            width: 105px;
-            height: 125px;
+            width: 145px;
 
-            padding: 8px;
+            padding: 9px;
 
             background: white;
 
-            border: 1px solid rgba(0, 0, 0, 0.07);
-
-            border-radius: 22px;
+            border-radius: 18px;
 
             box-shadow:
-                0 20px 50px rgba(0, 0, 0, 0.10);
+                0 22px 55px rgba(0, 0, 0, 0.12);
 
-            z-index: 2;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+
+            z-index: 3;
+
+            text-align: left;
 
             animation:
-                floatMemory 6s ease-in-out infinite;
+                memoryFloat 6s ease-in-out infinite;
         }
 
-        .memory-inner {
+        .memory-photo {
             width: 100%;
-            height: 100%;
+
+            aspect-ratio: 1 / 0.85;
+
+            border-radius: 12px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            border-radius: 16px;
+            font-size: 43px;
 
-            font-size: 42px;
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .memory-photo::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
 
             background:
                 linear-gradient(
-                    145deg,
-                    #f4f7ff,
-                    #e9f2ff
+                    135deg,
+                    rgba(255,255,255,0.25),
+                    transparent
                 );
         }
 
-        .memory-1 {
-            top: 125px;
-            left: 12%;
+        .memory-caption {
+            padding: 9px 4px 3px;
 
-            transform: rotate(-11deg);
+            font-size: 11px;
+
+            color: #666;
+
+            font-weight: 600;
+        }
+
+
+        /* Different photo backgrounds */
+
+        .photo-sunset {
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffd6a5,
+                    #ff9f9f,
+                    #a18cd1
+                );
+        }
+
+        .photo-party {
+            background:
+                linear-gradient(
+                    145deg,
+                    #a1c4fd,
+                    #c2e9fb,
+                    #fbc2eb
+                );
+        }
+
+        .photo-love {
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffecd2,
+                    #fcb69f
+                );
+        }
+
+        .photo-friends {
+            background:
+                linear-gradient(
+                    145deg,
+                    #d4fc79,
+                    #96e6a1
+                );
+        }
+
+        .photo-night {
+            background:
+                linear-gradient(
+                    145deg,
+                    #667eea,
+                    #764ba2
+                );
+        }
+
+        .photo-travel {
+            background:
+                linear-gradient(
+                    145deg,
+                    #89f7fe,
+                    #66a6ff
+                );
+        }
+
+
+        /* Individual cards */
+
+        .memory-1 {
+            top: 130px;
+            left: 9%;
+
+            transform: rotate(-12deg);
+
+            animation-delay: 0s;
         }
 
         .memory-2 {
             top: 160px;
-            right: 12%;
+            right: 9%;
 
             transform: rotate(10deg);
 
@@ -381,8 +473,8 @@
         }
 
         .memory-3 {
-            bottom: 90px;
-            left: 19%;
+            bottom: 105px;
+            left: 15%;
 
             transform: rotate(8deg);
 
@@ -390,18 +482,59 @@
         }
 
         .memory-4 {
-            bottom: 105px;
-            right: 19%;
+            bottom: 90px;
+            right: 15%;
 
-            transform: rotate(-9deg);
+            transform: rotate(-8deg);
 
             animation-delay: 3.2s;
         }
 
+        .memory-5 {
+            top: 340px;
+            left: 3%;
 
-        /* =========================
+            transform: rotate(7deg)
+                scale(0.78);
+
+            opacity: 0.65;
+
+            animation-delay: 2.8s;
+        }
+
+        .memory-6 {
+            top: 350px;
+            right: 3%;
+
+            transform: rotate(-7deg)
+                scale(0.78);
+
+            opacity: 0.65;
+
+            animation-delay: 4s;
+        }
+
+
+        /* =====================================================
+           MEMORY FLOAT ANIMATION
+        ===================================================== */
+
+        @keyframes memoryFloat {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: -14px;
+            }
+        }
+
+
+        /* =====================================================
            HOW IT WORKS
-        ========================= */
+        ===================================================== */
 
         .features {
             max-width: 1150px;
@@ -492,6 +625,7 @@
             height: 58px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
@@ -521,9 +655,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            CREATE MODAL
-        ========================= */
+        ===================================================== */
 
         .modal {
             display: none;
@@ -594,9 +728,6 @@
             background: #f1f1f3;
 
             font-size: 20px;
-
-            transition:
-                background 0.2s ease;
         }
 
         .close-button:hover {
@@ -669,23 +800,17 @@
             font-size: 16px;
 
             font-weight: 650;
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
         }
 
         .create-button:hover {
-            transform: translateY(-2px);
-
             box-shadow:
                 0 10px 25px rgba(0, 122, 255, 0.22);
         }
 
 
-        /* =========================
+        /* =====================================================
            GALLERY
-        ========================= */
+        ===================================================== */
 
         .gallery {
             display: none;
@@ -720,12 +845,7 @@
 
             border-radius: 20px;
 
-            cursor: pointer;
-
             margin-bottom: 25px;
-
-            transition:
-                background 0.2s ease;
         }
 
         .back-button:hover {
@@ -758,9 +878,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            GALLERY ID
-        ========================= */
+        ===================================================== */
 
         .gallery-id-box {
             display: inline-block;
@@ -787,9 +907,9 @@
         }
 
 
-        /* =========================
-           QR CODE
-        ========================= */
+        /* =====================================================
+           QR
+        ===================================================== */
 
         .qr-box {
             display: inline-block;
@@ -822,9 +942,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            GALLERY ACTIONS
-        ========================= */
+        ===================================================== */
 
         .gallery-actions {
             margin-top: 25px;
@@ -849,8 +969,6 @@
             font-size: 15px;
 
             font-weight: 600;
-
-            cursor: pointer;
         }
 
         .upload-button {
@@ -874,9 +992,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            PHOTOS
-        ========================= */
+        ===================================================== */
 
         .photo-area {
             max-width: 1150px;
@@ -938,9 +1056,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            EMPTY STATE
-        ========================= */
+        ===================================================== */
 
         .empty-state {
             text-align: center;
@@ -969,9 +1087,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            LIGHTBOX
-        ========================= */
+        ===================================================== */
 
         .lightbox {
             display: none;
@@ -1002,9 +1120,6 @@
             object-fit: contain;
 
             border-radius: 10px;
-
-            box-shadow:
-                0 20px 80px rgba(0, 0, 0, 0.35);
         }
 
         .lightbox-close {
@@ -1029,21 +1144,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            ANIMATIONS
-        ========================= */
-
-        @keyframes floatMemory {
-
-            0%,
-            100% {
-                margin-top: 0;
-            }
-
-            50% {
-                margin-top: -16px;
-            }
-        }
+        ===================================================== */
 
         @keyframes fadeUp {
 
@@ -1082,16 +1185,15 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            TABLET
-        ========================= */
+        ===================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
 
-            .memory {
-                opacity: 0.65;
-
-                transform: scale(0.8);
+            .memory-5,
+            .memory-6 {
+                display: none;
             }
 
             .memory-1 {
@@ -1126,9 +1228,9 @@
         }
 
 
-        /* =========================
+        /* =====================================================
            MOBILE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 600px) {
 
@@ -1148,19 +1250,22 @@
                 font-size: 13px;
             }
 
+
             .hero {
-                min-height: 650px;
+                min-height: 680px;
 
                 padding:
-                    75px 18px 80px;
+                    85px 18px 90px;
             }
+
 
             .hero h1 {
                 font-size:
-                    clamp(45px, 14vw, 65px);
+                    clamp(44px, 13vw, 62px);
 
                 letter-spacing: -3px;
             }
+
 
             .hero p {
                 font-size: 17px;
@@ -1168,11 +1273,13 @@
                 margin-top: 24px;
             }
 
+
             .hero-actions {
                 flex-direction: column;
 
                 width: 100%;
             }
+
 
             .main-button,
             .secondary-button {
@@ -1181,59 +1288,91 @@
                 max-width: 300px;
             }
 
+
             .hero-trust {
                 font-size: 12px;
 
                 line-height: 1.8;
             }
 
+
+            /* Make the cards smaller */
+
             .memory {
-                width: 70px;
-                height: 85px;
+                width: 85px;
 
-                border-radius: 16px;
+                padding: 6px;
 
-                opacity: 0.45;
+                border-radius: 14px;
+
+                opacity: 0.55;
             }
 
-            .memory-inner {
-                border-radius: 11px;
+            .memory-photo {
+                border-radius: 9px;
 
                 font-size: 27px;
             }
 
+            .memory-caption {
+                font-size: 8px;
+
+                padding: 6px 2px 2px;
+            }
+
+
             .memory-1 {
-                top: 90px;
-                left: -5%;
+                top: 80px;
+                left: -12%;
+
+                transform:
+                    rotate(-12deg)
+                    scale(0.85);
             }
 
             .memory-2 {
-                top: 90px;
-                right: -5%;
+                top: 80px;
+                right: -12%;
+
+                transform:
+                    rotate(10deg)
+                    scale(0.85);
             }
 
             .memory-3 {
                 bottom: 65px;
-                left: -3%;
+                left: -10%;
+
+                transform:
+                    rotate(8deg)
+                    scale(0.85);
             }
 
             .memory-4 {
                 bottom: 65px;
-                right: -3%;
+                right: -10%;
+
+                transform:
+                    rotate(-8deg)
+                    scale(0.85);
             }
+
 
             .features {
                 padding:
                     70px 18px 80px;
             }
 
+
             .features h2 {
                 margin-bottom: 35px;
             }
 
+
             .card {
                 padding: 28px 24px;
             }
+
 
             .photo-grid {
                 grid-template-columns:
@@ -1242,13 +1381,16 @@
                 gap: 8px;
             }
 
+
             .photo-item {
                 border-radius: 12px;
             }
 
+
             .photo-info {
                 font-size: 13px;
             }
+
 
             .modal-box {
                 padding: 24px;
@@ -1256,26 +1398,29 @@
                 border-radius: 24px;
             }
 
+
             .gallery-header {
                 padding:
                     35px 18px 40px;
             }
 
+
             .qr-box img {
                 width: 160px;
                 height: 160px;
             }
+
         }
 
 
-        /* =========================
-           SMALL MOBILE
-        ========================= */
+        /* =====================================================
+           VERY SMALL MOBILE
+        ===================================================== */
 
         @media (max-width: 380px) {
 
             .hero h1 {
-                font-size: 43px;
+                font-size: 42px;
             }
 
             .hero-trust span {
@@ -1288,6 +1433,7 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+
         }
 
     </style>
@@ -1298,9 +1444,9 @@
 <body>
 
 
-    <!-- =========================
+    <!-- =====================================================
          NAVIGATION
-    ========================= -->
+    ===================================================== -->
 
     <nav>
 
@@ -1326,56 +1472,134 @@
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          HOME
-    ========================= -->
+    ===================================================== -->
 
     <div id="home">
 
 
-        <!-- HERO -->
+        <!-- =================================================
+             HERO
+        ================================================= -->
 
         <section class="hero">
 
 
-            <!-- Floating memory cards -->
+            <!-- MEMORY CARD 1 -->
 
             <div class="memory memory-1">
-                <div class="memory-inner">
-                    📸
+
+                <div
+                    class="memory-photo photo-sunset"
+                >
+                    🌅
                 </div>
+
+                <div class="memory-caption">
+                    Best day ever
+                </div>
+
             </div>
 
+
+            <!-- MEMORY CARD 2 -->
 
             <div class="memory memory-2">
-                <div class="memory-inner">
+
+                <div
+                    class="memory-photo photo-love"
+                >
                     💍
                 </div>
+
+                <div class="memory-caption">
+                    Just married
+                </div>
+
             </div>
 
+
+            <!-- MEMORY CARD 3 -->
 
             <div class="memory memory-3">
-                <div class="memory-inner">
-                    🎉
+
+                <div
+                    class="memory-photo photo-friends"
+                >
+                    🥳
                 </div>
+
+                <div class="memory-caption">
+                    With the crew
+                </div>
+
             </div>
 
+
+            <!-- MEMORY CARD 4 -->
 
             <div class="memory memory-4">
-                <div class="memory-inner">
-                    🥂
+
+                <div
+                    class="memory-photo photo-night"
+                >
+                    🎉
                 </div>
+
+                <div class="memory-caption">
+                    11:42 PM
+                </div>
+
+            </div>
+
+
+            <!-- SMALL CARD 5 -->
+
+            <div class="memory memory-5">
+
+                <div
+                    class="memory-photo photo-travel"
+                >
+                    ✈️
+                </div>
+
+                <div class="memory-caption">
+                    The trip
+                </div>
+
+            </div>
+
+
+            <!-- SMALL CARD 6 -->
+
+            <div class="memory memory-6">
+
+                <div
+                    class="memory-photo photo-party"
+                >
+                    🎂
+                </div>
+
+                <div class="memory-caption">
+                    Birthday
+                </div>
+
             </div>
 
 
 
-            <!-- Hero content -->
+            <!-- =================================================
+                 HERO CONTENT
+            ================================================= -->
 
             <div class="hero-content">
 
 
                 <div class="badge">
+
                     ✨ Share memories together
+
                 </div>
 
 
@@ -1441,25 +1665,30 @@
 
             </div>
 
+
         </section>
 
 
 
-        <!-- =========================
+        <!-- =================================================
              HOW IT WORKS
-        ========================= -->
+        ================================================= -->
 
         <section class="features">
 
 
             <div class="section-label">
-                Simple by design
+
+                SIMPLE BY DESIGN
+
             </div>
 
 
             <h2>
+
                 Everyone's memories.
                 One place.
+
             </h2>
 
 
@@ -1483,13 +1712,14 @@
                     </h3>
 
                     <p>
+
                         Give your gallery a name
                         and create a shared space
                         for your event.
+
                     </p>
 
                 </div>
-
 
 
                 <!-- CARD 2 -->
@@ -1509,13 +1739,14 @@
                     </h3>
 
                     <p>
+
                         Put the QR code on a table,
                         invitation, screen, or simply
                         send the gallery link.
+
                     </p>
 
                 </div>
-
 
 
                 <!-- CARD 3 -->
@@ -1535,9 +1766,11 @@
                     </h3>
 
                     <p>
+
                         Guests add their favorite
                         moments and everyone gets
                         to see the memories together.
+
                     </p>
 
                 </div>
@@ -1552,9 +1785,9 @@
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          CREATE GALLERY MODAL
-    ========================= -->
+    ===================================================== -->
 
     <div
         class="modal"
@@ -1576,7 +1809,9 @@
                     class="close-button"
                     onclick="closeModal()"
                 >
+
                     ×
+
                 </button>
 
             </div>
@@ -1620,7 +1855,9 @@
                 class="create-button"
                 onclick="createGallery()"
             >
+
                 Create Gallery
+
             </button>
 
 
@@ -1630,9 +1867,9 @@
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          GALLERY PAGE
-    ========================= -->
+    ===================================================== -->
 
     <section
         class="gallery"
@@ -1688,8 +1925,6 @@
 
 
 
-            <!-- QR CODE -->
-
             <div class="qr-box">
 
                 <img
@@ -1698,14 +1933,14 @@
                 >
 
                 <div class="qr-label">
+
                     Scan to join this gallery
+
                 </div>
 
             </div>
 
 
-
-            <!-- ACTIONS -->
 
             <div class="gallery-actions">
 
@@ -1806,9 +2041,9 @@
 
 
 
-    <!-- =========================
-         PHOTO LIGHTBOX
-    ========================= -->
+    <!-- =====================================================
+         LIGHTBOX
+    ===================================================== -->
 
     <div
         class="lightbox"
@@ -1820,7 +2055,9 @@
             class="lightbox-close"
             onclick="closeLightbox()"
         >
+
             ×
+
         </button>
 
 
@@ -1834,22 +2071,23 @@
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================= -->
+    ===================================================== -->
 
     <script>
 
 
-        /* =========================
+        /* =====================================================
            MODAL
-        ========================= */
+        ===================================================== */
 
         function openModal() {
 
             document
                 .getElementById("galleryModal")
                 .classList.add("show");
+
 
             setTimeout(() => {
 
@@ -1872,10 +2110,9 @@
 
 
 
-        /* =========================
-           CLOSE MODAL BY CLICKING
-           OUTSIDE
-        ========================= */
+        /* =====================================================
+           CLICK OUTSIDE MODAL
+        ===================================================== */
 
         document
             .getElementById("galleryModal")
@@ -1896,9 +2133,9 @@
 
 
 
-        /* =========================
-           CLOSE WITH ESCAPE
-        ========================= */
+        /* =====================================================
+           ESCAPE KEY
+        ===================================================== */
 
         document.addEventListener(
             "keydown",
@@ -1919,16 +2156,18 @@
 
 
 
-        /* =========================
+        /* =====================================================
            GENERATE GALLERY ID
-        ========================= */
+        ===================================================== */
 
         function generateGalleryId() {
 
             const characters =
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+
             let result = "";
+
 
             for (
                 let i = 0;
@@ -1946,15 +2185,16 @@
 
             }
 
+
             return result;
 
         }
 
 
 
-        /* =========================
+        /* =====================================================
            CREATE GALLERY
-        ========================= */
+        ===================================================== */
 
         function createGallery() {
 
@@ -1972,7 +2212,9 @@
                     .trim();
 
 
-            if (name === "") {
+            if (
+                name === ""
+            ) {
 
                 alert(
                     "Please enter an event name."
@@ -1988,11 +2230,10 @@
 
 
 
-            /* Update gallery */
-
             document
                 .getElementById("galleryTitle")
-                .textContent = name;
+                .textContent =
+                    name;
 
 
             document
@@ -2024,11 +2265,12 @@
 
             document
                 .getElementById("qrImage")
-                .src = qrUrl;
+                .src =
+                    qrUrl;
 
 
 
-            /* Clear previous photos */
+            /* CLEAR PHOTOS */
 
             document
                 .getElementById("photoGrid")
@@ -2037,24 +2279,22 @@
 
             document
                 .getElementById("emptyState")
-                .style.display = "block";
+                .style.display =
+                    "block";
 
 
             updatePhotoCount();
 
 
-
-            /* Close modal */
-
             closeModal();
 
 
-
-            /* Show gallery */
+            /* SHOW GALLERY */
 
             document
                 .getElementById("home")
-                .style.display = "none";
+                .style.display =
+                    "none";
 
 
             document
@@ -2062,15 +2302,18 @@
                 .classList.add("active");
 
 
-            window.scrollTo(0, 0);
+            window.scrollTo(
+                0,
+                0
+            );
 
         }
 
 
 
-        /* =========================
+        /* =====================================================
            JOIN GALLERY
-        ========================= */
+        ===================================================== */
 
         function joinGallery() {
 
@@ -2106,13 +2349,6 @@
             }
 
 
-            /*
-             * For now this is only a UI prototype.
-             *
-             * Later, Supabase will use this ID
-             * to find the real gallery.
-             */
-
             alert(
                 "Gallery joining will be connected to Supabase soon.\n\nGallery ID: "
                 +
@@ -2123,9 +2359,9 @@
 
 
 
-        /* =========================
-           HOME
-        ========================= */
+        /* =====================================================
+           GO HOME
+        ===================================================== */
 
         function goHome() {
 
@@ -2136,18 +2372,22 @@
 
             document
                 .getElementById("home")
-                .style.display = "block";
+                .style.display =
+                    "block";
 
 
-            window.scrollTo(0, 0);
+            window.scrollTo(
+                0,
+                0
+            );
 
         }
 
 
 
-        /* =========================
-           CHOOSE PHOTOS
-        ========================= */
+        /* =====================================================
+           CHOOSE PHOTO
+        ===================================================== */
 
         function choosePhoto() {
 
@@ -2159,9 +2399,9 @@
 
 
 
-        /* =========================
+        /* =====================================================
            ADD PHOTOS
-        ========================= */
+        ===================================================== */
 
         function addPhotos(event) {
 
@@ -2202,7 +2442,9 @@
 
 
                 const imageUrl =
-                    URL.createObjectURL(file);
+                    URL.createObjectURL(
+                        file
+                    );
 
 
                 image.src =
@@ -2251,20 +2493,15 @@
             updatePhotoCount();
 
 
-            /*
-             * Allow selecting the same
-             * file again later.
-             */
-
             event.target.value = "";
 
         }
 
 
 
-        /* =========================
+        /* =====================================================
            PHOTO COUNT
-        ========================= */
+        ===================================================== */
 
         function updatePhotoCount() {
 
@@ -2286,7 +2523,9 @@
                     );
 
 
-            if (count > 0) {
+            if (
+                count > 0
+            ) {
 
                 document
                     .getElementById("emptyState")
@@ -2306,20 +2545,26 @@
 
 
 
-        /* =========================
+        /* =====================================================
            LIGHTBOX
-        ========================= */
+        ===================================================== */
 
-        function openLightbox(imageUrl) {
+        function openLightbox(
+            imageUrl
+        ) {
 
             const lightbox =
                 document
-                    .getElementById("lightbox");
+                    .getElementById(
+                        "lightbox"
+                    );
 
 
             const image =
                 document
-                    .getElementById("lightboxImage");
+                    .getElementById(
+                        "lightboxImage"
+                    );
 
 
             image.src =
@@ -2337,22 +2582,28 @@
         function closeLightbox() {
 
             document
-                .getElementById("lightbox")
-                .classList.remove("show");
+                .getElementById(
+                    "lightbox"
+                )
+                .classList.remove(
+                    "show"
+                );
 
         }
 
 
 
-        /* =========================
-           SHARE
-        ========================= */
+        /* =====================================================
+           SHARE GALLERY
+        ===================================================== */
 
         async function shareGallery() {
 
             const id =
                 document
-                    .getElementById("galleryId")
+                    .getElementById(
+                        "galleryId"
+                    )
                     .textContent
                     .trim();
 
@@ -2382,8 +2633,7 @@
                 } catch (error) {
 
                     /*
-                     * User cancelled sharing.
-                     * Nothing needs to happen.
+                     * Sharing cancelled.
                      */
 
                 }
