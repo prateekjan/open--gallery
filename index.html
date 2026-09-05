@@ -2593,7 +2593,29 @@ async function createGallery() {
                 : null
 
     };
+const { data, error } = await supabaseClient
+    .from("galleries")
+    .insert({
+        public_id: galleryId,
+        name: name,
+        description:
+            description ||
+            "Everyone's favorite moments.",
+        emoji: selectedEmoji,
+        is_private: isPrivate,
+        access_code:
+            isPrivate
+                ? privateCode
+                : null
+    })
+    .select()
+    .single();
 
+if (error) {
+    console.error("Gallery save error:", error);
+    alert("Could not save the gallery. Please try again.");
+    return;
+}
 
     photos = [];
 
