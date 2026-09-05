@@ -3130,28 +3130,54 @@ function collectFeature() {
    JOIN GALLERY
 ========================= */
 
-function joinGallery() {
-
+async function joinGallery() {
     const id =
         prompt(
             "Enter the Gallery ID"
         );
 
-
     if (!id) {
-
         return;
-
     }
 
+    const galleryId =
+        id.trim().toUpperCase();
 
-    alert(
-        "Private gallery access will be connected "
-        + "to Supabase in the next stage.\n\n"
-        + "Gallery ID: "
-        + id.toUpperCase()
-    );
+    const { data, error } =
+        await supabaseClient
+            .from("galleries")
+            .select("*")
+            .eq("public_id", galleryId)
+            .single();
 
+    if (error || !data) {
+        console.error(
+            "Join gallery error:",
+            error
+        );
+
+        alert(
+            "Gallery not found.\n\n" +
+            "Please check the Gallery ID " +
+            "and try again."
+        );
+
+        return;
+    }
+
+    currentGallery = {
+        id: data.public_id,
+        name: data.name,
+        description:
+            data.description ||
+            "Everyone's favorite moments.",
+        emoji: data.emoji || "📸",
+        isPrivate: data.is_private,
+        accessCode:
+            data.access_code || null
+    };
+
+    showGallery();
 }
 
 
