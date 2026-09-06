@@ -2632,6 +2632,7 @@ if (error) {
     alert("Could not save the gallery. Please try again.");
     return;
 }
+    currentGallery.databaseId = data.id;
 
     photos = [];
 
@@ -2788,22 +2789,103 @@ function openPhotoPicker() {
 ========================= */
 
 document
+    document
     .getElementById("photoInput")
     .addEventListener(
         "change",
-        function(event) {
+        async function(event) {
 
             const files =
                 Array.from(event.target.files);
 
-
-            files.forEach(file => {
+            for (const file of files) {
 
                 if (!file.type.startsWith("image/")) {
-
-                    return;
-
+                    continue;
                 }
+
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(
+                        file.name +
+                        " is larger than 10 MB."
+                    );
+                    continue;
+                }
+
+                const filePath =
+                    currentGallery.databaseId +
+                    "/" +
+                    crypto.randomUUID() +
+                    "-" +
+                    file.name;
+
+                const { error: uploadError } =
+                    await supabaseClient
+                        .storage
+                        .from("gallery-photos")
+                        .upload(
+                            filePath,
+                            file,
+                            {
+                                contentType: file.type,
+                                upsert: false
+                            }
+                        );
+
+                if (uploadError) {
+                    console.error(
+                        "Photo upload error:",
+                        uploadError
+                    );
+
+                    alert(
+                        "Could not upload " +
+                        file.name
+                    );
+
+                    continue;
+                }
+
+                const { error: dbError } =
+                    await supabaseClient
+                        .from("photos")
+                        .insert({
+                            gallery_id:
+                                currentGallery.databaseId,
+                            storage_path:
+                                filePath,
+                            file_name:
+                                file.name
+                        });
+
+                if (dbError) {
+                    console.error(
+                        "Photo database error:",
+                        dbError
+                    );
+
+                    alert(
+                        "Photo uploaded, but could not be saved."
+                    );
+
+                    continue;
+                }
+
+                const imageUrl =
+                    URL.createObjectURL(file);
+
+                photos.push({
+                    url: imageUrl,
+                    name: file.name,
+                    storagePath: filePath
+                });
+            }
+
+            renderPhotos();
+
+            event.target.value = "";
+        }
+    );
 
 
                 const imageUrl =
@@ -3182,8 +3264,9 @@ async function joinGallery() {
     }
 
     currentGallery = {
-        id: data.public_id,
-        name: data.name,
+    id: data.public_id,
+    databaseId: data.id,
+    name: data.name,
         description:
             data.description ||
             "Everyone's favorite moments.",
