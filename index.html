@@ -2770,9 +2770,12 @@ function showGallery() {
         return;
 
     }
-
+    window.location.hash =
+        "#gallery-" + currentGallery.id;
 
     document.getElementById("homePage").style.display = "none";
+
+    
 
     document.getElementById("galleryPage").style.display = "block";
 
