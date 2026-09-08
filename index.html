@@ -3365,7 +3365,52 @@ document.addEventListener(
 
     }
 );
+async function restoreGalleryFromUrl() {
+    const hash = window.location.hash;
 
+    if (!hash.startsWith("#gallery-")) {
+        return;
+    }
+
+    const galleryId =
+        hash.replace("#gallery-", "").trim().toUpperCase();
+
+    if (!galleryId) {
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient
+            .from("galleries")
+            .select("*")
+            .eq("public_id", galleryId)
+            .single();
+
+    if (error || !data) {
+        console.error(
+            "Restore gallery error:",
+            error
+        );
+        return;
+    }
+
+    currentGallery = {
+        id: data.public_id,
+        databaseId: data.id,
+        name: data.name,
+        description:
+            data.description ||
+            "Everyone's favorite moments.",
+        emoji: data.emoji || "📸",
+        isPrivate: data.is_private,
+        accessCode:
+            data.access_code || null
+    };
+
+    showGallery();
+}
+
+restoreGalleryFromUrl();
 </script>
 
 </body>
