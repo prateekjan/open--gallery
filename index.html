@@ -2428,14 +2428,18 @@ let currentGallery = null;
 let selectedEmoji = "🎉";
 
 let photos = [];
-
+    
+let realtimeChannel = null;
 
 /* =========================
    HOME
 ========================= */
 
 function goHome() {
-
+if (realtimeChannel) {
+    supabaseClient.removeChannel(realtimeChannel);
+    realtimeChannel = null;
+}
     document.getElementById("homePage").style.display = "block";
 
     document.getElementById("galleryPage").style.display = "none";
@@ -2760,6 +2764,56 @@ async function loadPhotos() {
 
     renderPhotos();
 } 
+    /* =========================
+   REALTIME PHOTO UPDATES
+========================= */
+
+function subscribeToGalleryRealtime() {
+
+    if (!currentGallery || !currentGallery.databaseId) {
+        return;
+    }
+
+    if (realtimeChannel) {
+        supabaseClient.removeChannel(realtimeChannel);
+        realtimeChannel = null;
+    }
+
+    realtimeChannel =
+        supabaseClient
+            .channel(
+                "gallery-photos-" +
+                currentGallery.databaseId
+            )
+            .on(
+                "postgres_changes",
+                {
+                    event: "INSERT",
+                    schema: "public",
+                    table: "photos",
+                    filter:
+                        "gallery_id=eq." +
+                        currentGallery.databaseId
+                },
+                async function(payload) {
+
+                    console.log(
+                        "New photo detected:",
+                        payload.new
+                    );
+
+                    await loadPhotos();
+                }
+            )
+            .subscribe(function(status) {
+
+                console.log(
+                    "Gallery realtime status:",
+                    status
+                );
+
+            });
+}
     
 function showGallery() {
 
@@ -2814,6 +2868,7 @@ function showGallery() {
 
 
     loadPhotos();
+    subscribeToGalleryRealtime();
 
 
     window.scrollTo({
