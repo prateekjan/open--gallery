@@ -1167,7 +1167,39 @@ body::after {
 
     animation: photoIn 0.35s ease;
 }
+.delete-photo-btn {
+    position: absolute;
 
+    top: 10px;
+    right: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    color: white;
+
+    font-size: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition: 0.2s;
+}
+
+.delete-photo-btn:hover {
+    transform: scale(1.08);
+    background: rgba(220, 38, 38, 0.9);
+}
 @keyframes photoIn {
 
     from {
@@ -2429,17 +2461,14 @@ let selectedEmoji = "🎉";
 
 let photos = [];
     
-let realtimeChannel = null;
+
 
 /* =========================
    HOME
 ========================= */
 
 function goHome() {
-if (realtimeChannel) {
-    supabaseClient.removeChannel(realtimeChannel);
-    realtimeChannel = null;
-}
+
     document.getElementById("homePage").style.display = "block";
 
     document.getElementById("galleryPage").style.display = "none";
@@ -2764,56 +2793,9 @@ async function loadPhotos() {
 
     renderPhotos();
 } 
-    /* =========================
-   REALTIME PHOTO UPDATES
-========================= */
+    
 
-function subscribeToGalleryRealtime() {
 
-    if (!currentGallery || !currentGallery.databaseId) {
-        return;
-    }
-
-    if (realtimeChannel) {
-        supabaseClient.removeChannel(realtimeChannel);
-        realtimeChannel = null;
-    }
-
-    realtimeChannel =
-        supabaseClient
-            .channel(
-                "gallery-photos-" +
-                currentGallery.databaseId
-            )
-            .on(
-                "postgres_changes",
-                {
-                    event: "INSERT",
-                    schema: "public",
-                    table: "photos",
-                    filter:
-                        "gallery_id=eq." +
-                        currentGallery.databaseId
-                },
-                async function(payload) {
-
-                    console.log(
-                        "New photo detected:",
-                        payload.new
-                    );
-
-                    await loadPhotos();
-                }
-            )
-            .subscribe(function(status) {
-
-                console.log(
-                    "Gallery realtime status:",
-                    status
-                );
-
-            });
-}
     
 function showGallery() {
 
@@ -3005,7 +2987,72 @@ document
 
  
 
+async function deletePhoto(photo) {
 
+    if (!currentGallery) {
+        return;
+    }
+
+    const { error: storageError } =
+        await supabaseClient
+            .storage
+            .from("gallery-photos")
+            .remove([
+                photo.storagePath
+            ]);
+
+    if (storageError) {
+
+        console.error(
+            "Photo storage delete error:",
+            storageError
+        );
+
+        alert(
+            "Could not delete the photo."
+        );
+
+        return;
+    }
+
+    const { error: dbError } =
+        await supabaseClient
+            .from("photos")
+            .delete()
+            .eq(
+                "gallery_id",
+                currentGallery.databaseId
+            )
+            .eq(
+                "storage_path",
+                photo.storagePath
+            );
+
+    if (dbError) {
+
+        console.error(
+            "Photo database delete error:",
+            dbError
+        );
+
+        alert(
+            "Photo file was deleted, " +
+            "but the gallery record could not be removed."
+        );
+
+        return;
+    }
+
+    photos =
+        photos.filter(
+            item =>
+                item.storagePath !==
+                photo.storagePath
+        );
+
+    renderPhotos();
+
+}
 /* =========================
    RENDER PHOTOS
 ========================= */
