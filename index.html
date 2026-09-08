@@ -2701,7 +2701,66 @@ function openCreatedGallery() {
 /* =========================
    SHOW GALLERY
 ========================= */
+async function loadPhotos() {
+    if (!currentGallery || !currentGallery.databaseId) {
+        photos = [];
+        renderPhotos();
+        return;
+    }
 
+    const { data, error } = await supabaseClient
+        .from("photos")
+        .select("*")
+        .eq("gallery_id", currentGallery.databaseId)
+        .order("created_at", {
+            ascending: true
+        });
+
+    if (error) {
+        console.error(
+            "Load photos error:",
+            error
+        );
+
+        photos = [];
+        renderPhotos();
+        return;
+    }
+
+    const loadedPhotos = [];
+
+    for (const photo of data) {
+
+        const { data: signedData, error: signedError } =
+            await supabaseClient
+                .storage
+                .from("gallery-photos")
+                .createSignedUrl(
+                    photo.storage_path,
+                    3600
+                );
+
+        if (signedError) {
+            console.error(
+                "Signed URL error:",
+                signedError
+            );
+
+            continue;
+        }
+
+        loadedPhotos.push({
+            url: signedData.signedUrl,
+            name: photo.file_name,
+            storagePath: photo.storage_path
+        });
+    }
+
+    photos = loadedPhotos;
+
+    renderPhotos();
+} 
+    
 function showGallery() {
 
     if (!currentGallery) {
